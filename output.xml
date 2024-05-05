@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.1.1 (Python 3.10.12 on darwin)" generated="20240505 21:51:51.746" rpa="false" schemaversion="4">
+<suite id="s1" name="X" source="/Users/thinhnguyen/Library/Mobile Documents/com~apple~CloudDocs/WS/CNCT/Testing/CK-2/x.robot">
+<test id="s1-t1" name="Perform Actions on Window Operations Page and Verify" line="11">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20240505 21:51:52.211" level="INFO">Opening browser 'Chrome' to base url 'https://automationteststore.com/'.</msg>
+<status status="PASS" starttime="20240505 21:51:52.209" endtime="20240505 21:53:48.261"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20240505 21:53:48.263" endtime="20240505 21:53:48.629"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240505 21:53:50.633" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240505 21:53:48.630" endtime="20240505 21:53:50.634"/>
+</kw>
+<kw name="Get Location" library="SeleniumLibrary">
+<var>${current_url}</var>
+<doc>Returns the current browser window URL.</doc>
+<msg timestamp="20240505 21:53:50.751" level="INFO">${current_url} = https://automationteststore.com/</msg>
+<status status="PASS" starttime="20240505 21:53:50.635" endtime="20240505 21:53:50.751"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${current_url}</arg>
+<arg>${Page Index}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20240505 21:53:50.752" endtime="20240505 21:53:50.754"/>
+</kw>
+<kw name="Mouse Over" library="SeleniumLibrary">
+<arg>xpath=/html/body/div/header/div[2]/div/div[2]/ul/li/a/span</arg>
+<doc>Simulates hovering the mouse over the element ``locator``.</doc>
+<msg timestamp="20240505 21:53:50.756" level="INFO">Simulating Mouse Over on element 'xpath=/html/body/div/header/div[2]/div/div[2]/ul/li/a/span'.</msg>
+<status status="PASS" starttime="20240505 21:53:50.754" endtime="20240505 21:53:56.375"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath=//*[contains(text(), ' Euro')]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240505 21:53:56.378" level="INFO">Clicking element 'xpath=//*[contains(text(), ' Euro')]'.</msg>
+<status status="PASS" starttime="20240505 21:53:56.376" endtime="20240505 21:54:00.828"/>
+</kw>
+<kw name="Switch Window" library="SeleniumLibrary">
+<arg>A place to practice your automation skills!</arg>
+<doc>Switches to browser window matching ``locator``.</doc>
+<status status="PASS" starttime="20240505 21:54:00.830" endtime="20240505 21:54:00.902"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>Check button header1</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20240505 21:54:00.904" level="INFO">Check button header1</msg>
+<status status="PASS" starttime="20240505 21:54:00.903" endtime="20240505 21:54:00.905"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>xpath=/html/body/div/header/div[2]/div/div[2]/ul/li/a/span</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20240505 21:54:00.906" endtime="20240505 21:54:01.422"/>
+</kw>
+<kw name="Get Text" library="SeleniumLibrary">
+<var>${message}</var>
+<arg>xpath=/html/body/div/header/div[2]/div/div[2]/ul/li/a/span</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<msg timestamp="20240505 21:54:01.708" level="INFO">${message} = € EURO</msg>
+<status status="PASS" starttime="20240505 21:54:01.424" endtime="20240505 21:54:01.708"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${expected_message}</var>
+<arg>€ EURO</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240505 21:54:01.712" level="INFO">${expected_message} = € EURO</msg>
+<status status="PASS" starttime="20240505 21:54:01.710" endtime="20240505 21:54:01.713"/>
+</kw>
+<kw name="Should Match Regexp" library="BuiltIn">
+<arg>${message}</arg>
+<arg>€ EURO</arg>
+<doc>Fails if ``string`` does not match ``pattern`` as a regular expression.</doc>
+<status status="PASS" starttime="20240505 21:54:01.714" endtime="20240505 21:54:01.716"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>Check button header2</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20240505 21:54:01.718" level="INFO">Check button header2</msg>
+<status status="PASS" starttime="20240505 21:54:01.717" endtime="20240505 21:54:01.719"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>xpath=/html/body/div/header/div[2]/div/div[3]/ul/li/a</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20240505 21:54:01.721" endtime="20240505 21:54:01.780"/>
+</kw>
+<kw name="Get Text" library="SeleniumLibrary">
+<var>${message}</var>
+<arg>xpath=/html/body/div/header/div[2]/div/div[3]/ul/li/a</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<msg timestamp="20240505 21:54:02.004" level="INFO">${message} =    0 ITEMS - 0.00€</msg>
+<status status="PASS" starttime="20240505 21:54:01.781" endtime="20240505 21:54:02.005"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${expected_message}</var>
+<arg>0 ITEMS - 0.00€</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240505 21:54:02.007" level="INFO">${expected_message} = 0 ITEMS - 0.00€</msg>
+<status status="PASS" starttime="20240505 21:54:02.006" endtime="20240505 21:54:02.007"/>
+</kw>
+<kw name="Should Match Regexp" library="BuiltIn">
+<arg>${message}</arg>
+<arg>0 ITEMS - 0.00€</arg>
+<doc>Fails if ``string`` does not match ``pattern`` as a regular expression.</doc>
+<status status="PASS" starttime="20240505 21:54:02.008" endtime="20240505 21:54:02.009"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>Check thumnail với 1 sẩn phẩm bất kì xem đã chuyển qua dùng euro chưa</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20240505 21:54:02.011" level="INFO">Check thumnail với 1 sẩn phẩm bất kì xem đã chuyển qua dùng euro chưa</msg>
+<status status="PASS" starttime="20240505 21:54:02.010" endtime="20240505 21:54:02.011"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath=//*[@id="block_frame_featured_1769"]/div/div[1]/div[2]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240505 21:54:02.014" level="INFO">Clicking element 'xpath=//*[@id="block_frame_featured_1769"]/div/div[1]/div[2]'.</msg>
+<status status="PASS" starttime="20240505 21:54:02.012" endtime="20240505 21:54:10.494"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>xpath=//*[@id="product_details"]/div/div[2]/div/div/div[1]/div/div</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20240505 21:54:10.495" endtime="20240505 21:54:10.628"/>
+</kw>
+<kw name="Get Text" library="SeleniumLibrary">
+<var>${message}</var>
+<arg>xpath=//*[@id="product_details"]/div/div[2]/div/div/div[1]/div/div</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<msg timestamp="20240505 21:54:10.802" level="INFO">${message} = 27.69€</msg>
+<status status="PASS" starttime="20240505 21:54:10.629" endtime="20240505 21:54:10.802"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${expected_message}</var>
+<arg>27.69€</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240505 21:54:10.804" level="INFO">${expected_message} = 27.69€</msg>
+<status status="PASS" starttime="20240505 21:54:10.803" endtime="20240505 21:54:10.804"/>
+</kw>
+<kw name="Should Match Regexp" library="BuiltIn">
+<arg>${message}</arg>
+<arg>27.69€</arg>
+<doc>Fails if ``string`` does not match ``pattern`` as a regular expression.</doc>
+<status status="PASS" starttime="20240505 21:54:10.805" endtime="20240505 21:54:10.806"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>check giá vị trí 2 của sản phẩm</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20240505 21:54:10.808" level="INFO">check giá vị trí 2 của sản phẩm</msg>
+<status status="PASS" starttime="20240505 21:54:10.807" endtime="20240505 21:54:10.808"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>xpath=//*[@id="product"]/fieldset/div[2]/label/span</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20240505 21:54:10.809" endtime="20240505 21:54:12.296"/>
+</kw>
+<kw name="Get Text" library="SeleniumLibrary">
+<var>${message}</var>
+<arg>xpath=//*[@id="product"]/fieldset/div[2]/label/span</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<msg timestamp="20240505 21:54:12.316" level="INFO">${message} = 27.69€</msg>
+<status status="PASS" starttime="20240505 21:54:12.297" endtime="20240505 21:54:12.316"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${expected_message}</var>
+<arg>27.69€</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240505 21:54:12.318" level="INFO">${expected_message} = 27.69€</msg>
+<status status="PASS" starttime="20240505 21:54:12.317" endtime="20240505 21:54:12.318"/>
+</kw>
+<kw name="Should Match Regexp" library="BuiltIn">
+<arg>${message}</arg>
+<arg>27.69€</arg>
+<doc>Fails if ``string`` does not match ``pattern`` as a regular expression.</doc>
+<status status="PASS" starttime="20240505 21:54:12.319" endtime="20240505 21:54:12.320"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>add vào card tiếp tục check</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20240505 21:54:12.322" level="INFO">add vào card tiếp tục check</msg>
+<status status="PASS" starttime="20240505 21:54:12.321" endtime="20240505 21:54:12.323"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath=//*[@id="product"]/fieldset/div[4]/ul/li/a</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240505 21:54:12.325" level="INFO">Clicking element 'xpath=//*[@id="product"]/fieldset/div[4]/ul/li/a'.</msg>
+<status status="PASS" starttime="20240505 21:54:12.324" endtime="20240505 21:54:22.011"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>xpath=//*[@id="cart"]/div/div[1]/table/tbody/tr[2]/td[4]</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20240505 21:54:22.013" endtime="20240505 21:54:22.097"/>
+</kw>
+<kw name="Get Text" library="SeleniumLibrary">
+<var>${message}</var>
+<arg>xpath=//*[@id="cart"]/div/div[1]/table/tbody/tr[2]/td[4]</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<msg timestamp="20240505 21:54:22.232" level="INFO">${message} = 27.69€</msg>
+<status status="PASS" starttime="20240505 21:54:22.098" endtime="20240505 21:54:22.232"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${expected_message}</var>
+<arg>27.69€</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240505 21:54:22.234" level="INFO">${expected_message} = 27.69€</msg>
+<status status="PASS" starttime="20240505 21:54:22.233" endtime="20240505 21:54:22.234"/>
+</kw>
+<kw name="Should Match Regexp" library="BuiltIn">
+<arg>${message}</arg>
+<arg>27.69€</arg>
+<doc>Fails if ``string`` does not match ``pattern`` as a regular expression.</doc>
+<status status="PASS" starttime="20240505 21:54:22.234" endtime="20240505 21:54:22.235"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>Check lại phần table thanh toán</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20240505 21:54:22.237" level="INFO">Check lại phần table thanh toán</msg>
+<status status="PASS" starttime="20240505 21:54:22.236" endtime="20240505 21:54:22.237"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>xpath=//*[@id="totals_table"]</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20240505 21:54:22.237" endtime="20240505 21:54:22.260"/>
+</kw>
+<kw name="Get Text" library="SeleniumLibrary">
+<var>${message}</var>
+<arg>xpath=//*[@id="totals_table"]</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<msg timestamp="20240505 21:54:22.568" level="INFO">${message} = Sub-Total: 27.69€
+Flat Shipping Rate: 1.88€
+Total: 29.57€</msg>
+<status status="PASS" starttime="20240505 21:54:22.260" endtime="20240505 21:54:22.568"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${expected_message}</var>
+<arg>27.69€</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240505 21:54:22.570" level="INFO">${expected_message} = 27.69€</msg>
+<status status="PASS" starttime="20240505 21:54:22.569" endtime="20240505 21:54:22.570"/>
+</kw>
+<kw name="Should Match Regexp" library="BuiltIn">
+<arg>${message}</arg>
+<arg>27.69€</arg>
+<doc>Fails if ``string`` does not match ``pattern`` as a regular expression.</doc>
+<status status="PASS" starttime="20240505 21:54:22.571" endtime="20240505 21:54:22.572"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>check lại giá trị giỏ hàng trên header</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20240505 21:54:22.574" level="INFO">check lại giá trị giỏ hàng trên header</msg>
+<status status="PASS" starttime="20240505 21:54:22.573" endtime="20240505 21:54:22.575"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>xpath=/html/body/div/header/div[2]/div/div[3]/ul/li/a</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20240505 21:54:22.575" endtime="20240505 21:54:22.642"/>
+</kw>
+<kw name="Get Text" library="SeleniumLibrary">
+<var>${message}</var>
+<arg>xpath=/html/body/div/header/div[2]/div/div[3]/ul/li/a</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<msg timestamp="20240505 21:54:22.718" level="INFO">${message} =    1 ITEMS - 27.69€</msg>
+<status status="PASS" starttime="20240505 21:54:22.643" endtime="20240505 21:54:22.718"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${expected_message}</var>
+<arg>1 ITEMS - 27.69€</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240505 21:54:22.720" level="INFO">${expected_message} = 1 ITEMS - 27.69€</msg>
+<status status="PASS" starttime="20240505 21:54:22.719" endtime="20240505 21:54:22.721"/>
+</kw>
+<kw name="Should Match Regexp" library="BuiltIn">
+<arg>${message}</arg>
+<arg>1 ITEMS - 27.69€</arg>
+<doc>Fails if ``string`` does not match ``pattern`` as a regular expression.</doc>
+<status status="PASS" starttime="20240505 21:54:22.721" endtime="20240505 21:54:22.723"/>
+</kw>
+<status status="PASS" starttime="20240505 21:51:52.206" endtime="20240505 21:54:22.724"/>
+</test>
+<doc>Assignment 3: Perform actions on Window Operations page and verify</doc>
+<status status="PASS" starttime="20240505 21:51:51.754" endtime="20240505 21:54:22.726"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="X">X</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

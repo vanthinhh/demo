@@ -1,0 +1,2 @@
+1713795666249	geckodriver	INFO	Listening on 127.0.0.1:51804
+1713795666629	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/Use ... s" "localhost" "-foreground" "-no-remote" "-profile" "/var/folders/0t/qt5mx2cd0x3bfnb5fh6n8kpw0000gn/T/rust_mozprofileovSomz"
