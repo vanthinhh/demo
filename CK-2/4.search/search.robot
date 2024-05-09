@@ -2,6 +2,8 @@
 Library    SeleniumLibrary
 Library    Collections
 Library    String
+Library    DateTime
+Library    BuiltIn
 
 *** Variables ***
 ${URL}    https://automationteststore.com
@@ -13,6 +15,7 @@ ${expected_result}    ACQUA DI GIO POUR HOMME    # Kết quả mong đợi
 ${filter1_value}    Apparel & accessories               # Giá trị của bộ lọc 1
 ${filter2_value}    All Categories               # Giá trị của bộ lọc 2
 ${filter3_value}    Fragrance               # Giá trị của bộ l
+${long_query}       ${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE} # Một chuỗi truy vấn dài
 
 *** Test Cases ***
 
@@ -268,6 +271,7 @@ Kiểm tra tính không phân biệt chữ hoa chữ thường trong truy vấn 
 
 
 Kiểm tra tìm kiếm với các bộ lọc
+
     [Documentation]    Kiểm tra tìm kiếm bằng cách kết hợp các bộ lọc
     Open Browser    ${URL}    chrome
     Maximize Browser Window
@@ -281,11 +285,88 @@ Kiểm tra tìm kiếm với các bộ lọc
     ${messgase}    Get Text    id=filter_keyword
     Input Text    id=filter_keyword    ${search_keyword}
 
-    # Bước 3: Chọn các bộ lọc
-
-    #Click Element    xpath=//*[contains(text(), 'category_49')]
+    # Bước 3: Chọn các bộ lọc 
+    Log    tìm sản phẩm với danh muc: Fragrance
     Click Element    xpath=//*[@id="search-category"]/li[7]
     Click Element    xpath=//*[@id="search_form"]/div/div
 
     # Bước 4: Kiểm tra kết quả tìm kiếm
     # Thêm các bước kiểm tra kết quả tìm kiếm ở đây
+    Wait Until Element Is Visible   xpath=//*[@id="maincontainer"]/div/div/div/div
+    #${search_input_value}    Get Text    xpath=//*[@id="maincontainer"]/div/div/div/div/div[3]
+    ${product_elements}    Get WebElements    xpath=//*[@id="maincontainer"]/div/div/div/div/div[3]/div[*]
+    ${number_of_products}    Get Length    ${product_elements}
+    Should Be Equal As Numbers    ${number_of_products}    0
+    
+    
+    Log    tìm sản phẩm với danh muc: All Categories
+    Click Element    id=filter_keyword
+    ${messgase}    Get Text    id=filter_keyword
+    Input Text    id=filter_keyword    ${search_keyword}
+    Click Element    xpath=//*[@id="search_form"]/div/div
+
+    # Bước 4: Kiểm tra kết quả tìm kiếm
+    # Thêm các bước kiểm tra kết quả tìm kiếm ở đây
+    Wait Until Element Is Visible   xpath=//*[@id="maincontainer"]/div/div/div/div
+    ${search_input_value}    Get Text    xpath=//*[@id="maincontainer"]/div/div/div/div/div[3]
+    ${product_elements}    Get WebElements    xpath=//*[@id="maincontainer"]/div/div/div/div/div[3]/div[*]
+    ${number_of_products}    Get Length    ${product_elements}
+    Should Be Equal As Numbers    ${number_of_products}    2.0
+    
+    
+    Close Browser
+
+
+Kiểm tra tìm kiếm các sản phẩm hết hàng
+    [Documentation]    Kiểm tra tìm kiếm các sản phẩm hết hàng
+    Open Browser    ${URL}    chrome
+    Maximize Browser Window
+    Set Selenium Speed    0.5
+
+    # Bước 1: Truy cập trang chủ
+    Go To    ${URL}
+
+    # Bước 2: Nhập từ khóa tìm kiếm sản phẩm hết hàng và thực hiện tìm kiếm
+    Input Text    id=filter_keyword    BeneFit Girl Meets Pearl
+    Click Element    xpath=//*[@id="search_form"]/div/div
+
+    # Bước 3: Kiểm tra xem có thông báo hoặc biểu tượng nào để chỉ ra rằng sản phẩm đã hết hàng
+    ${out_of_stock_message}    Get Text    xpath=//*[@id="product_details"]/div/div[2]/div/div
+    ${address_Out of Stock}    Get Text    xpath=//*[@id="product"]/fieldset/div[4]/ul/li/span
+    Run Keyword If    '${address_Out of Stock}' == 'Out of Stock'    Log    thông báo sản phẩm hết hàng
+    ...    ELSE    Log    Sản Phẩm còn hàng
+    ...    
+
+Kiểm tra khả năng phản hồi của trang kết quả tìm kiếm
+    [Documentation]    Kiểm tra khả năng phản hồi của trang kết quả tìm kiếm
+    Open Browser    ${URL}    chrome
+    Maximize Browser Window
+
+    # Bước 1: Thực hiện tìm kiếm và đo thời gian phản hồi
+    ${start_time}    Get Time
+    Input Text    id=filter_keyword    ${search_keyword}
+    Click Element    xpath=//*[@id="search_form"]/div/div
+    ${end_time}    Get Time
+    ${response_time}    Convert To String    ${end_time} - ${start_time}
+    Log    Thời gian phản hồi của trang kết quả tìm kiếm là: ${response_time}
+
+Kiểm tra tìm kiếm với chuỗi truy vấn rất dài
+    [Documentation]    Kiểm tra tìm kiếm với chuỗi truy vấn rất dài
+    Open Browser    ${URL}    chrome
+    Maximize Browser Window
+
+    # Bước 1: Truy cập trang chủ
+    Go To    ${URL}
+
+    # Bước 2: Nhập chuỗi truy vấn rất dài và thực hiện tìm kiếm
+    Input Text    id=filter_keyword    ${long_query}
+    Click Element    xpath=//*[@id="search_form"]/div/div
+
+    # Bước 3: Kiểm tra kết quả tìm kiếm
+    # Thêm các bước kiểm tra kết quả tìm kiếm ở đây
+    Wait Until Element Is Visible   xpath=//*[@id="maincontainer"]/div/div/div/div
+    #${search_input_value}    Get Text    xpath=//*[@id="maincontainer"]/div/div/div/div/div[3]
+    ${product_elements}    Get WebElements    xpath=//*[@id="maincontainer"]/div/div/div/div/div[3]/div[*]
+    ${number_of_products}    Get Length    ${product_elements}
+    Should Be Equal As Numbers    ${number_of_products}    0
+
