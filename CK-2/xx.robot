@@ -1,85 +1,134 @@
 *** Settings ***
-Documentation  Assignment 3: Perform actions on Window Operations page and verify
-Library  SeleniumLibrary
+Library    SeleniumLibrary
+Library    Collections
+Library    String
 
 *** Variables ***
-${URL}  https://automationteststore.com/
-${BROWSER}  Chrome
-${Page Index}    https://automationteststore.com/
+${URL}    https://automationteststore.com
 
 *** Test Cases ***
-Perform Actions on Window Operations Page and Verify
-    Open Browser  ${URL}  ${BROWSER}
+
+
+TimKiemSanPham0
+    [Documentation]    TÌm kiếm rỗng
+    Open Browser    ${URL}    chrome
     Maximize Browser Window
-    Sleep  2s  # Wait for the page to load completely
+    Set Selenium Speed    0.5
 
-    # Check if the current page link matches ${Page Index}
-    ${current_url}=  Get Location
-    Should Be Equal As Strings  ${current_url}  ${Page Index}
-    
-    # Click "Replace Window" button
-    Mouse Over    xpath=/html/body/div/header/div[2]/div/div[2]/ul/li/a/span
-    Click Element  xpath=//*[contains(text(), ' Euro')]
-    Switch Window  A place to practice your automation skills!
-    
+    # Bước 1: Truy cập trang chủ
+    Go To    ${URL}
 
+    # Bước 2: Nhập từ khóa tìm kiếm và thực hiện tìm kiếm
+    Click Element    xpath=//*[@id="filter_keyword"]
+    #Input Text    id=filter_keyword    [ ]
+    Click Element    xpath=//*[@id="search_form"]/div/div
 
-    # Check button 
-    Wait Until Element Is Visible    xpath=/html/body/div/header/div[2]/div/div[2]/ul/li/a/span    timeout=5s
+    Wait Until Element Is Visible   xpath=//*[@id="maincontainer"]/div/div/div/div
+    ${message1}    Get Text    xpath=//*[@id="maincontainer"]/div/div/div/div
+    ${message2}    Get Text    xpath=//*[@id="maincontainer"]/div/div/div/div/div[2]
+    Should Match Regexp    ${message2}    There is no product that matches the search criteria.
 
-    ${message}=    Get Text    xpath=/html/body/div/header/div[2]/div/div[2]/ul/li/a/span
-    ${expected_message}=    Set Variable     € EURO
+    Set Selenium Page Load Timeout    5s
+    # Bước 5: Đóng trình duyệt
+    Close Browser
 
-    Should Match Regexp    ${message}    € EURO
-    
+TimKiemSanPham1
+    [Documentation]    TÌm kiếm dấu cách
+    Open Browser    ${URL}    chrome
+    Maximize Browser Window
+    Set Selenium Speed    0.5
 
-    # Check button 
-    Wait Until Element Is Visible    xpath=/html/body/div/header/div[2]/div/div[3]/ul/li/a    timeout=5s
+    # Bước 1: Truy cập trang chủ
+    Go To    ${URL}
 
-    ${message}=    Get Text    xpath=/html/body/div/header/div[2]/div/div[3]/ul/li/a
-    ${expected_message}=    Set Variable     0 ITEMS - 0.00€
+    # Bước 2: Nhập từ khóa tìm kiếm và thực hiện tìm kiếm
+    Click Element    xpath=//*[@id="filter_keyword"]
+    Input Text    id=filter_keyword    [         ]
+    Click Element    xpath=//*[@id="search_form"]/div/div
 
-    Should Match Regexp    ${message}    0 ITEMS - 0.00€
+    Wait Until Element Is Visible   xpath=//*[@id="maincontainer"]/div/div/div/div
+    ${message1}    Get Text    xpath=//*[@id="maincontainer"]/div/div/div/div
+    ${message2}    Get Text    xpath=//*[@id="maincontainer"]/div/div/div/div/div[2]
+   
+    Should Match Regexp    ${message2}    There is no product that matches the search criteria.
 
-    # Check thumnail với 1 sẩn phẩm bất kì xem đã chuyển qua dùng euro chưa
-    #check giá vị trí 1 của sản phẩm
-    Click Element    xpath=//*[@id="block_frame_featured_1769"]/div/div[1]/div[2]
-    Wait Until Element Is Visible    xpath=//*[@id="product_details"]/div/div[2]/div/div/div[1]/div/div    timeout=5s
-
-    ${message}=    Get Text    xpath=//*[@id="product_details"]/div/div[2]/div/div/div[1]/div/div
-    ${expected_message}=    Set Variable     27.69€
-
-    Should Match Regexp    ${message}    27.69€
-    
-    #check giá vị trí 2 của sản phẩm
-
-    Wait Until Element Is Visible    xpath=//*[@id="product"]/fieldset/div[2]/label/span    timeout=5s
-
-    ${message}=    Get Text    xpath=//*[@id="product"]/fieldset/div[2]/label/span
-    ${expected_message}=    Set Variable     27.69€
-
-    Should Match Regexp    ${message}    27.69€
+    Set Selenium Page Load Timeout    5s
+    # Bước 5: Đóng trình duyệt
+    Close Browser
 
 
-    #add vào card tiếp tục check
-    Click Element    xpath=//*[@id="product"]/fieldset/div[4]/ul/li/a
+TimKiemSanPham1.1
+    [Documentation]    tìm kiếm với các danh mục sản phẩm
+    Open Browser    ${URL}    chrome
+    Maximize Browser Window
+    Set Selenium Speed    0.5
 
-    Wait Until Element Is Visible    xpath=//*[@id="cart"]/div/div[1]/table/tbody/tr[2]/td[4]    timeout=5s
+    # Bước 1: Truy cập trang chủ
+    Go To    ${URL}
 
-    ${message}=    Get Text    xpath=//*[@id="cart"]/div/div[1]/table/tbody/tr[2]/td[4]
-    ${expected_message}=    Set Variable     27.69€
+    # Bước 2: Nhập từ khóa tìm kiếm và thực hiện tìm kiếm
+    Click Element    xpath=//*[@id="filter_keyword"]
+    Input Text    id=filter_keyword   Men
+    Click Element    xpath=//*[@id="search_form"]/div/div
 
-    Should Match Regexp    ${message}    27.69€
+    # Bước 3: Tạo số ngẫu nhiên từ 1 đến 16
+    ${options}=    Create List    1    2    3    4    6    7    8    9    11    12    13    14    16
+    ${length}=    Get Length    ${options}
+    ${random_index}=    Evaluate    random.randint(0, ${length}-1)
+    ${random_number}=    Get From List    ${options}    ${random_index}
 
-    #Check lại phần thanh toán
 
-    Wait Until Element Is Visible    xpath=//*[@id="totals_table"]    timeout=5s
+    # Bước 4: Kiểm tra và click vào sản phẩm tương ứng
+    Click Element    xpath=//*[@id="maincontainer"]/div/div/div/div/div[3]/div[${random_number}]/div[2]/a/img
+    Set Selenium Page Load Timeout    5s
+    # Bước 5: Đóng trình duyệt
+    Close Browser
 
-    ${message}=    Get Text    xpath=//*[@id="totals_table"]
-    #check lại giá trị giỏ hàng trên header
-    Wait Until Element Is Visible    xpath=/html/body/div/header/div[2]/div/div[3]/ul/li/a    timeout=5s
 
-    ${message}=    Get Text    xpath=/html/body/div/header/div[2]/div/div[3]/ul/li/a
-    ${expected_message}=    Set Variable     1 ITEMS - 27.69€
+TimKiemSanPham1.2
+    [Documentation]    TÌm kiếm kí tự đặc biệt
+    Open Browser    ${URL}    chrome
+    Maximize Browser Window
+    Set Selenium Speed    0.5
 
-    Should Match Regexp    ${message}    1 ITEMS - 27.69€
+    # Bước 1: Truy cập trang chủ
+    Go To    ${URL}
+
+    # Bước 2: Nhập từ khóa tìm kiếm và thực hiện tìm kiếm
+    Click Element    xpath=//*[@id="filter_keyword"]
+    Input Text    id=filter_keyword    ~!@$&*^*@!
+    Click Element    xpath=//*[@id="search_form"]/div/div
+
+    Wait Until Element Is Visible   xpath=//*[@id="maincontainer"]/div/div/div/div
+    ${message1}    Get Text    xpath=//*[@id="maincontainer"]/div/div/div/div
+    ${message2}    Get Text    xpath=//*[@id="maincontainer"]/div/div/div/div/div[2]
+   
+    Should Match Regexp    ${message2}    There is no product that matches the search criteria.
+
+    Set Selenium Page Load Timeout    5s
+    # Bước 5: Đóng trình duyệt
+    Close Browser
+
+TimKiemSanPham1.3
+    [Documentation]    Tìm kiếm bằng số 
+    Open Browser    ${URL}    chrome
+    Maximize Browser Window
+    Set Selenium Speed    0.5
+
+    # Bước 1: Truy cập trang chủ
+    Go To    ${URL}
+
+    # Bước 2: Nhập từ khóa tìm kiếm và thực hiện tìm kiếm
+    Click Element    xpath=//*[@id="filter_keyword"]
+    Input Text    id=filter_keyword    1
+    Click Element    xpath=//*[@id="search_form"]/div/div
+
+    Wait Until Element Is Visible   xpath=//*[@id="maincontainer"]/div/div/div/div
+    ${message1}    Get Text    xpath=//*[@id="maincontainer"]/div/div/div/div
+    ${message2}    Get Text    xpath=//*[@id="maincontainer"]/div/div/div/div/div[2]
+    ${message3}    Get Text    xpath=//*[@id="maincontainer"]/div/div/div/div/div[3]
+    #Should Match Regexp    ${message2}    There is no product that matches the search criteria.
+
+    Set Selenium Page Load Timeout    5s
+    # Bước 5: Đóng trình duyệt
+    Close Browser

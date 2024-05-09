@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.1.1 (Python 3.10.12 on darwin)" generated="20240506 21:51:56.631" rpa="false" schemaversion="4">
+<suite id="s1" name="Testing" source="/Users/thinhnguyen/Library/Mobile Documents/com~apple~CloudDocs/WS/CNCT/Testing">
+<suite id="s1-s1" name="CK-2" source="/Users/thinhnguyen/Library/Mobile Documents/com~apple~CloudDocs/WS/CNCT/Testing/CK-2">
+<suite id="s1-s1-s1" name="Xx" source="/Users/thinhnguyen/Library/Mobile Documents/com~apple~CloudDocs/WS/CNCT/Testing/CK-2/xx.robot">
+<test id="s1-s1-s1-t1" name="TimKiemSanPham0" line="12">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${URL}</arg>
+<arg>chrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20240506 21:51:56.869" level="INFO">Opening browser 'chrome' to base url 'https://automationteststore.com'.</msg>
+<msg timestamp="20240506 21:52:28.471" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-13.png"&gt;&lt;img src="selenium-screenshot-13.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="FAIL" starttime="20240506 21:51:56.868" endtime="20240506 21:52:28.471"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="NOT RUN" starttime="20240506 21:52:28.472" endtime="20240506 21:52:28.473"/>
+</kw>
+<kw name="Set Selenium Speed" library="SeleniumLibrary">
+<arg>0.5</arg>
+<doc>Sets the delay that is waited after each Selenium command.</doc>
+<status status="NOT RUN" starttime="20240506 21:52:28.473" endtime="20240506 21:52:28.474"/>
+</kw>
+<kw name="Go To" library="SeleniumLibrary">
+<arg>${URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="NOT RUN" starttime="20240506 21:52:28.474" endtime="20240506 21:52:28.474"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath=//*[@id="filter_keyword"]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="NOT RUN" starttime="20240506 21:52:28.475" endtime="20240506 21:52:28.475"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath=//*[@id="search_form"]/div/div</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="NOT RUN" starttime="20240506 21:52:28.475" endtime="20240506 21:52:28.475"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>xpath=//*[@id="maincontainer"]/div/div/div/div</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="NOT RUN" starttime="20240506 21:52:28.475" endtime="20240506 21:52:28.476"/>
+</kw>
+<kw name="Get Text" library="SeleniumLibrary">
+<var>${message1}</var>
+<arg>xpath=//*[@id="maincontainer"]/div/div/div/div</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="NOT RUN" starttime="20240506 21:52:28.476" endtime="20240506 21:52:28.476"/>
+</kw>
+<kw name="Get Text" library="SeleniumLibrary">
+<var>${message2}</var>
+<arg>xpath=//*[@id="maincontainer"]/div/div/div/div/div[2]</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="NOT RUN" starttime="20240506 21:52:28.476" endtime="20240506 21:52:28.476"/>
+</kw>
+<kw name="Set Selenium Page Load Timeout" library="SeleniumLibrary">
+<arg>5s</arg>
+<doc>Sets the page load timeout value used by Selenium.</doc>
+<status status="NOT RUN" starttime="20240506 21:52:28.477" endtime="20240506 21:52:28.477"/>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="NOT RUN" starttime="20240506 21:52:28.477" endtime="20240506 21:52:28.477"/>
+</kw>
+<doc>TÌm kiếm rỗng</doc>
+<status status="FAIL" starttime="20240506 21:51:56.867" endtime="20240506 21:52:28.478">Execution terminated by signal</status>
+</test>
+<test id="s1-s1-s1-t2" name="TimKiemSanPham" line="33">
+<tag>robot:exit</tag>
+<status status="FAIL" starttime="20240506 21:52:28.479" endtime="20240506 21:52:28.480">Test execution stopped due to a fatal error.</status>
+</test>
+<status status="FAIL" starttime="20240506 21:51:56.671" endtime="20240506 21:52:28.484"/>
+</suite>
+<status status="FAIL" starttime="20240506 21:51:56.668" endtime="20240506 21:52:28.487"/>
+</suite>
+<status status="FAIL" starttime="20240506 21:51:56.645" endtime="20240506 21:52:28.489"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="2" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="0" fail="1" skip="0" info="combined" combined="NOT robot:exit">NOT robot:exit</stat>
+</tag>
+<suite>
+<stat pass="0" fail="2" skip="0" id="s1" name="Testing">Testing</stat>
+<stat pass="0" fail="2" skip="0" id="s1-s1" name="CK-2">Testing.CK-2</stat>
+<stat pass="0" fail="2" skip="0" id="s1-s1-s1" name="Xx">Testing.CK-2.Xx</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
