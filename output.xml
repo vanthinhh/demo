@@ -1,83 +1,133 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 6.1.1 (Python 3.10.12 on darwin)" generated="20240510 02:57:55.276" rpa="false" schemaversion="4">
-<suite id="s1" name="Search" source="/Users/thinhnguyen/Library/Mobile Documents/com~apple~CloudDocs/WS/CNCT/Testing/CK-2/4.search/search.robot">
-<test id="s1-t1" name="Xác minh nút &quot;enter&quot; trong bộ lọc tìm kiếm hoạt động" line="381">
+<robot generator="Robot 6.1.1 (Python 3.10.12 on darwin)" generated="20240511 04:22:47.626" rpa="false" schemaversion="4">
+<suite id="s1" name="Detail" source="/Users/thinhnguyen/Library/Mobile Documents/com~apple~CloudDocs/WS/CNCT/Testing/CK-2/5.detailsp/detail.robot">
+<test id="s1-t1" name="Check if the product has a Related Products section or not then retrieve the information" line="408">
 <kw name="Open Browser" library="SeleniumLibrary">
 <arg>${URL}</arg>
 <arg>chrome</arg>
 <doc>Opens a new browser instance to the optional ``url``.</doc>
-<msg timestamp="20240510 02:57:55.533" level="INFO">Opening browser 'chrome' to base url 'https://automationteststore.com'.</msg>
-<status status="PASS" starttime="20240510 02:57:55.533" endtime="20240510 02:58:10.222"/>
+<msg timestamp="20240511 04:22:48.185" level="INFO">Opening browser 'chrome' to base url 'https://automationteststore.com'.</msg>
+<status status="PASS" starttime="20240511 04:22:48.185" endtime="20240511 04:23:07.454"/>
 </kw>
 <kw name="Maximize Browser Window" library="SeleniumLibrary">
 <doc>Maximizes current browser window.</doc>
-<status status="PASS" starttime="20240510 02:58:10.224" endtime="20240510 02:58:11.209"/>
+<status status="PASS" starttime="20240511 04:23:07.456" endtime="20240511 04:23:08.218"/>
+</kw>
+<kw name="Set Selenium Speed" library="SeleniumLibrary">
+<arg>0.5</arg>
+<doc>Sets the delay that is waited after each Selenium command.</doc>
+<status status="PASS" starttime="20240511 04:23:08.219" endtime="20240511 04:23:08.220"/>
 </kw>
 <kw name="Go To" library="SeleniumLibrary">
 <arg>${URL}</arg>
 <doc>Navigates the current browser window to the provided ``url``.</doc>
-<msg timestamp="20240510 02:58:11.210" level="INFO">Opening url 'https://automationteststore.com'</msg>
-<status status="PASS" starttime="20240510 02:58:11.209" endtime="20240510 02:58:12.717"/>
+<msg timestamp="20240511 04:23:08.221" level="INFO">Opening url 'https://automationteststore.com'</msg>
+<status status="PASS" starttime="20240511 04:23:08.220" endtime="20240511 04:23:10.284"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath=//*[@id="filter_keyword"]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240511 04:23:10.286" level="INFO">Clicking element 'xpath=//*[@id="filter_keyword"]'.</msg>
+<status status="PASS" starttime="20240511 04:23:10.284" endtime="20240511 04:23:12.677"/>
 </kw>
 <kw name="Input Text" library="SeleniumLibrary">
 <arg>id=filter_keyword</arg>
-<arg>${expected_result}</arg>
+<arg>Womens high heel point toe stiletto sandals ankle strap court shoes</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<msg timestamp="20240510 02:58:12.720" level="INFO">Typing text 'ACQUA DI GIO POUR HOMME' into text field 'id=filter_keyword'.</msg>
-<status status="PASS" starttime="20240510 02:58:12.718" endtime="20240510 02:58:14.177"/>
+<msg timestamp="20240511 04:23:12.679" level="INFO">Typing text 'Womens high heel point toe stiletto sandals ankle strap court shoes' into text field 'id=filter_keyword'.</msg>
+<status status="PASS" starttime="20240511 04:23:12.678" endtime="20240511 04:23:15.870"/>
 </kw>
-<kw name="Press Keys" library="SeleniumLibrary">
-<arg>id=filter_keyword</arg>
-<arg>\\13</arg>
-<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
-<msg timestamp="20240510 02:58:14.178" level="INFO">Sending key(s) ('\\13',) to id=filter_keyword element.</msg>
-<msg timestamp="20240510 02:58:15.113" level="INFO">Sending keys \13</msg>
-<status status="PASS" starttime="20240510 02:58:14.177" endtime="20240510 02:58:15.217"/>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath=//*[@id="search_form"]/div/div</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240511 04:23:15.872" level="INFO">Clicking element 'xpath=//*[@id="search_form"]/div/div'.</msg>
+<status status="PASS" starttime="20240511 04:23:15.871" endtime="20240511 04:23:19.786"/>
 </kw>
 <kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
 <arg>xpath=//*[@id="maincontainer"]/div/div/div/div</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<msg timestamp="20240510 02:58:20.568" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-17.png"&gt;&lt;img src="selenium-screenshot-17.png" width="800px"&gt;&lt;/a&gt;</msg>
-<msg timestamp="20240510 02:58:20.568" level="FAIL">Element 'xpath=//*[@id="maincontainer"]/div/div/div/div' not visible after 5 seconds.</msg>
-<status status="FAIL" starttime="20240510 02:58:15.218" endtime="20240510 02:58:20.571"/>
+<status status="PASS" starttime="20240511 04:23:19.787" endtime="20240511 04:23:20.906"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>xpath=//*[@id="myTab"]</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20240511 04:23:20.906" endtime="20240511 04:23:21.982"/>
 </kw>
 <kw name="Get Text" library="SeleniumLibrary">
-<var>${search_input_value}</var>
-<arg>xpath=//*[@id="maincontainer"]/div/div/div/div/div[3]</arg>
+<var>${nav}</var>
+<arg>xpath=//*[@id="myTab"]</arg>
 <doc>Returns the text value of the element identified by ``locator``.</doc>
-<status status="NOT RUN" starttime="20240510 02:58:20.572" endtime="20240510 02:58:20.572"/>
+<msg timestamp="20240511 04:23:23.463" level="INFO">${nav} = Description
+Reviews (0)
+Related Products (2)</msg>
+<status status="PASS" starttime="20240511 04:23:21.983" endtime="20240511 04:23:23.463"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath=//*[@id="myTab"]/li[3]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240511 04:23:23.465" level="INFO">Clicking element 'xpath=//*[@id="myTab"]/li[3]'.</msg>
+<status status="PASS" starttime="20240511 04:23:23.464" endtime="20240511 04:23:24.892"/>
+</kw>
+<kw name="Get Text" library="SeleniumLibrary">
+<var>${nav}</var>
+<arg>xpath=//*[@id="productdesc"]/div/div/div</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<msg timestamp="20240511 04:23:26.419" level="INFO">${nav} = Fiorella Purple Peep Toes
+$110.00
+New Ladies High Wedge Heel Toe Thong Diamante Flip Flop Sandals
+$26.00</msg>
+<status status="PASS" starttime="20240511 04:23:24.893" endtime="20240511 04:23:26.420"/>
 </kw>
 <kw name="Get WebElements" library="SeleniumLibrary">
 <var>${product_elements}</var>
-<arg>xpath=//*[@id="maincontainer"]/div/div/div/div/div[3]/div[*]</arg>
+<arg>xpath=//*[@id="relatedproducts"]/ul/li</arg>
 <doc>Returns a list of WebElement objects matching the ``locator``.</doc>
-<status status="NOT RUN" starttime="20240510 02:58:20.573" endtime="20240510 02:58:20.573"/>
+<msg timestamp="20240511 04:23:26.939" level="INFO">${product_elements} = [&lt;selenium.webdriver.remote.webelement.WebElement (session="1240908ff01116a0ec73d9d895b79d68", element="f.BCDB22101F161C6AD90ED1D113DDB0BE.d.1EC7D006A2357AB5B9EF5452A609E1AB.e.122")&gt;, &lt;selenium.webdri...</msg>
+<status status="PASS" starttime="20240511 04:23:26.420" endtime="20240511 04:23:26.940"/>
 </kw>
 <kw name="Get Length" library="BuiltIn">
 <var>${number_of_products}</var>
 <arg>${product_elements}</arg>
 <doc>Returns and logs the length of the given item as an integer.</doc>
-<status status="NOT RUN" starttime="20240510 02:58:20.573" endtime="20240510 02:58:20.573"/>
+<msg timestamp="20240511 04:23:26.941" level="INFO">Length is 2</msg>
+<msg timestamp="20240511 04:23:26.941" level="INFO">${number_of_products} = 2</msg>
+<status status="PASS" starttime="20240511 04:23:26.940" endtime="20240511 04:23:26.941"/>
 </kw>
 <kw name="Should Be Equal As Numbers" library="BuiltIn">
 <arg>${number_of_products}</arg>
-<arg>2.0</arg>
+<arg>2</arg>
 <doc>Fails if objects are unequal after converting them to real numbers.</doc>
-<status status="NOT RUN" starttime="20240510 02:58:20.574" endtime="20240510 02:58:20.574"/>
+<msg timestamp="20240511 04:23:26.942" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20240511 04:23:26.942" endtime="20240511 04:23:26.942"/>
 </kw>
-<doc>Xác minh rằng nhấn phím "Enter" trong trường tìm kiếm hoạt động</doc>
-<status status="FAIL" starttime="20240510 02:57:55.532" endtime="20240510 02:58:20.574">Element 'xpath=//*[@id="maincontainer"]/div/div/div/div' not visible after 5 seconds.</status>
+<kw name="Run Keyword If" library="BuiltIn">
+<arg>'${number_of_products} == 2'</arg>
+<arg>Log</arg>
+<arg>Related Products chính xác</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<kw name="Log" library="BuiltIn">
+<arg>Related Products chính xác</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20240511 04:23:26.944" level="INFO">Related Products chính xác</msg>
+<status status="PASS" starttime="20240511 04:23:26.944" endtime="20240511 04:23:26.944"/>
+</kw>
+<status status="PASS" starttime="20240511 04:23:26.943" endtime="20240511 04:23:26.944"/>
+</kw>
+<doc>kiểm tra sản phẩm có phần Related Products hay không sau đó lấy thông tin ra</doc>
+<status status="PASS" starttime="20240511 04:22:48.183" endtime="20240511 04:23:26.944"/>
 </test>
-<status status="FAIL" starttime="20240510 02:57:55.280" endtime="20240510 02:58:20.576"/>
+<status status="PASS" starttime="20240511 04:22:47.633" endtime="20240511 04:23:26.946"/>
 </suite>
 <statistics>
 <total>
-<stat pass="0" fail="1" skip="0">All Tests</stat>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
 </total>
 <tag>
 </tag>
 <suite>
-<stat pass="0" fail="1" skip="0" id="s1" name="Search">Search</stat>
+<stat pass="1" fail="0" skip="0" id="s1" name="Detail">Detail</stat>
 </suite>
 </statistics>
 <errors>

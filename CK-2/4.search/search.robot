@@ -119,6 +119,7 @@ TimKiemSanPham1.2
 
 TimKiemSanPham1.3
 
+
     [Documentation]    Tìm kiếm bằng số 
     Open Browser    ${URL}    chrome
     Maximize Browser Window
@@ -145,7 +146,40 @@ TimKiemSanPham1.3
 
 
 
+Search by category and retrieve the quantity in the found category
+    [Documentation]    tìm theo danh mục và lấy ra số lượng trong danh mục đã tìm được
+    Open Browser    ${URL}    chrome
+    Maximize Browser Window
+    Set Selenium Speed    0.5
 
+    # Bước 1: Truy cập trang chủ
+    Go To    ${URL}
+
+    # Bước 2: Nhập từ khóa tìm kiếm và thực hiện tìm kiếm
+    Click Element    xpath=//*[@id="filter_keyword"]
+    Input Text    id=filter_keyword   MEN
+    Click Element    xpath=//*[@id="search_form"]/div/div
+    ${product_elements}    Get WebElements    xpath=//*[@id="maincontainer"]/div/div/div/div/div[3]/div[*]
+    ${number_of_products}    Get Length    ${product_elements}
+    Log    Số lượng sản phẩm gồm : ${number_of_products}
+    # Bước 3: Tạo số ngẫu nhiên từ 1 đến 16
+    ${options}=    Create List    1    2    3    4    6    7    8    9    11    12    13    14    16
+    ${length}=    Get Length    ${options}
+    ${random_index}=    Evaluate    random.randint(0, ${length}-1)
+    ${random_number}=    Get From List    ${options}    ${random_index}
+
+    Wait Until Element Is Visible   xpath=//*[@id="maincontainer"]/div/div/div/div
+    # Bước 4: Kiểm tra và click vào sản phẩm tương ứng
+
+
+    #${search_input_value}    Get Text    xpath=//*[@id="maincontainer"]/div/div/div/div/div[3]
+
+    Log    Chọn 1 sản phẩm bất kì trong list đã search
+    Click Element    xpath=//*[@id="maincontainer"]/div/div/div/div/div[3]/div[${random_number}]/div[2]/a/img
+
+    Set Selenium Page Load Timeout    5s
+    # Bước 5: Đóng trình duyệt
+    Close Browser
 
 Kiểm tra tìm kiếm sản phẩm bằng từ khóa hợp lệ 
 
