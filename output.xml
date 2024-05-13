@@ -1,124 +1,132 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 6.1.1 (Python 3.10.12 on darwin)" generated="20240511 04:22:47.626" rpa="false" schemaversion="4">
+<robot generator="Robot 6.1.1 (Python 3.10.12 on darwin)" generated="20240513 08:29:40.047" rpa="false" schemaversion="4">
 <suite id="s1" name="Detail" source="/Users/thinhnguyen/Library/Mobile Documents/com~apple~CloudDocs/WS/CNCT/Testing/CK-2/5.detailsp/detail.robot">
-<test id="s1-t1" name="Check if the product has a Related Products section or not then retrieve the information" line="408">
+<test id="s1-t1" name="Check if the product is on sale or not if getting information and vice versa" line="525">
 <kw name="Open Browser" library="SeleniumLibrary">
 <arg>${URL}</arg>
 <arg>chrome</arg>
 <doc>Opens a new browser instance to the optional ``url``.</doc>
-<msg timestamp="20240511 04:22:48.185" level="INFO">Opening browser 'chrome' to base url 'https://automationteststore.com'.</msg>
-<status status="PASS" starttime="20240511 04:22:48.185" endtime="20240511 04:23:07.454"/>
+<msg timestamp="20240513 08:29:40.434" level="INFO">Opening browser 'chrome' to base url 'https://automationteststore.com'.</msg>
+<status status="PASS" starttime="20240513 08:29:40.433" endtime="20240513 08:29:58.328"/>
 </kw>
 <kw name="Maximize Browser Window" library="SeleniumLibrary">
 <doc>Maximizes current browser window.</doc>
-<status status="PASS" starttime="20240511 04:23:07.456" endtime="20240511 04:23:08.218"/>
+<status status="PASS" starttime="20240513 08:29:58.330" endtime="20240513 08:29:59.746"/>
 </kw>
 <kw name="Set Selenium Speed" library="SeleniumLibrary">
 <arg>0.5</arg>
 <doc>Sets the delay that is waited after each Selenium command.</doc>
-<status status="PASS" starttime="20240511 04:23:08.219" endtime="20240511 04:23:08.220"/>
+<status status="PASS" starttime="20240513 08:29:59.747" endtime="20240513 08:29:59.747"/>
 </kw>
 <kw name="Go To" library="SeleniumLibrary">
 <arg>${URL}</arg>
 <doc>Navigates the current browser window to the provided ``url``.</doc>
-<msg timestamp="20240511 04:23:08.221" level="INFO">Opening url 'https://automationteststore.com'</msg>
-<status status="PASS" starttime="20240511 04:23:08.220" endtime="20240511 04:23:10.284"/>
+<msg timestamp="20240513 08:29:59.749" level="INFO">Opening url 'https://automationteststore.com'</msg>
+<status status="PASS" starttime="20240513 08:29:59.748" endtime="20240513 08:30:02.076"/>
 </kw>
 <kw name="Click Element" library="SeleniumLibrary">
 <arg>xpath=//*[@id="filter_keyword"]</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20240511 04:23:10.286" level="INFO">Clicking element 'xpath=//*[@id="filter_keyword"]'.</msg>
-<status status="PASS" starttime="20240511 04:23:10.284" endtime="20240511 04:23:12.677"/>
+<msg timestamp="20240513 08:30:02.078" level="INFO">Clicking element 'xpath=//*[@id="filter_keyword"]'.</msg>
+<status status="PASS" starttime="20240513 08:30:02.076" endtime="20240513 08:30:04.498"/>
 </kw>
 <kw name="Input Text" library="SeleniumLibrary">
 <arg>id=filter_keyword</arg>
-<arg>Womens high heel point toe stiletto sandals ankle strap court shoes</arg>
+<arg>Absolue Eye Precious Cells</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<msg timestamp="20240511 04:23:12.679" level="INFO">Typing text 'Womens high heel point toe stiletto sandals ankle strap court shoes' into text field 'id=filter_keyword'.</msg>
-<status status="PASS" starttime="20240511 04:23:12.678" endtime="20240511 04:23:15.870"/>
+<msg timestamp="20240513 08:30:04.500" level="INFO">Typing text 'Absolue Eye Precious Cells' into text field 'id=filter_keyword'.</msg>
+<status status="PASS" starttime="20240513 08:30:04.499" endtime="20240513 08:30:07.628"/>
 </kw>
 <kw name="Click Element" library="SeleniumLibrary">
 <arg>xpath=//*[@id="search_form"]/div/div</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20240511 04:23:15.872" level="INFO">Clicking element 'xpath=//*[@id="search_form"]/div/div'.</msg>
-<status status="PASS" starttime="20240511 04:23:15.871" endtime="20240511 04:23:19.786"/>
+<msg timestamp="20240513 08:30:07.629" level="INFO">Clicking element 'xpath=//*[@id="search_form"]/div/div'.</msg>
+<status status="PASS" starttime="20240513 08:30:07.628" endtime="20240513 08:30:10.755"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath=//*[@id="maincontainer"]/div/div/div/div/div[3]/div[2]/div[2]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240513 08:30:10.757" level="INFO">Clicking element 'xpath=//*[@id="maincontainer"]/div/div/div/div/div[3]/div[2]/div[2]'.</msg>
+<status status="PASS" starttime="20240513 08:30:10.756" endtime="20240513 08:30:13.761"/>
 </kw>
 <kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
 <arg>xpath=//*[@id="maincontainer"]/div/div/div/div</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20240511 04:23:19.787" endtime="20240511 04:23:20.906"/>
-</kw>
-<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
-<arg>xpath=//*[@id="myTab"]</arg>
-<doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20240511 04:23:20.906" endtime="20240511 04:23:21.982"/>
+<status status="PASS" starttime="20240513 08:30:13.762" endtime="20240513 08:30:14.878"/>
 </kw>
 <kw name="Get Text" library="SeleniumLibrary">
-<var>${nav}</var>
-<arg>xpath=//*[@id="myTab"]</arg>
+<var>${Get_infor}</var>
+<arg>xpath=//*[@id="product_details"]/div/div[2]</arg>
 <doc>Returns the text value of the element identified by ``locator``.</doc>
-<msg timestamp="20240511 04:23:23.463" level="INFO">${nav} = Description
-Reviews (0)
-Related Products (2)</msg>
-<status status="PASS" starttime="20240511 04:23:21.983" endtime="20240511 04:23:23.463"/>
-</kw>
-<kw name="Click Element" library="SeleniumLibrary">
-<arg>xpath=//*[@id="myTab"]/li[3]</arg>
-<doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20240511 04:23:23.465" level="INFO">Clicking element 'xpath=//*[@id="myTab"]/li[3]'.</msg>
-<status status="PASS" starttime="20240511 04:23:23.464" endtime="20240511 04:23:24.892"/>
+<msg timestamp="20240513 08:30:16.591" level="INFO">${Get_infor} = Absolue Eye Precious Cells
+$89.00 $105.00
+Qty:
+Total Price:   $89.00
+Add to Cart Print</msg>
+<status status="PASS" starttime="20240513 08:30:14.879" endtime="20240513 08:30:16.591"/>
 </kw>
 <kw name="Get Text" library="SeleniumLibrary">
-<var>${nav}</var>
-<arg>xpath=//*[@id="productdesc"]/div/div/div</arg>
+<var>${productpageoldprice}</var>
+<arg>xpath=//*[@id="product_details"]/div/div[2]/div/div/div[1]/div/span</arg>
 <doc>Returns the text value of the element identified by ``locator``.</doc>
-<msg timestamp="20240511 04:23:26.419" level="INFO">${nav} = Fiorella Purple Peep Toes
-$110.00
-New Ladies High Wedge Heel Toe Thong Diamante Flip Flop Sandals
-$26.00</msg>
-<status status="PASS" starttime="20240511 04:23:24.893" endtime="20240511 04:23:26.420"/>
+<msg timestamp="20240513 08:30:17.852" level="INFO">${productpageoldprice} = $105.00</msg>
+<status status="PASS" starttime="20240513 08:30:16.592" endtime="20240513 08:30:17.852"/>
 </kw>
-<kw name="Get WebElements" library="SeleniumLibrary">
-<var>${product_elements}</var>
-<arg>xpath=//*[@id="relatedproducts"]/ul/li</arg>
-<doc>Returns a list of WebElement objects matching the ``locator``.</doc>
-<msg timestamp="20240511 04:23:26.939" level="INFO">${product_elements} = [&lt;selenium.webdriver.remote.webelement.WebElement (session="1240908ff01116a0ec73d9d895b79d68", element="f.BCDB22101F161C6AD90ED1D113DDB0BE.d.1EC7D006A2357AB5B9EF5452A609E1AB.e.122")&gt;, &lt;selenium.webdri...</msg>
-<status status="PASS" starttime="20240511 04:23:26.420" endtime="20240511 04:23:26.940"/>
+<kw name="Get Text" library="SeleniumLibrary">
+<var>${productfilneprice}</var>
+<arg>xpath=//*[@id="product_details"]/div/div[2]/div/div/div[1]/div/div</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<msg timestamp="20240513 08:30:18.954" level="INFO">${productfilneprice} = $89.00</msg>
+<status status="PASS" starttime="20240513 08:30:17.853" endtime="20240513 08:30:18.955"/>
 </kw>
-<kw name="Get Length" library="BuiltIn">
-<var>${number_of_products}</var>
-<arg>${product_elements}</arg>
-<doc>Returns and logs the length of the given item as an integer.</doc>
-<msg timestamp="20240511 04:23:26.941" level="INFO">Length is 2</msg>
-<msg timestamp="20240511 04:23:26.941" level="INFO">${number_of_products} = 2</msg>
-<status status="PASS" starttime="20240511 04:23:26.940" endtime="20240511 04:23:26.941"/>
+<kw name="Set Variable" library="BuiltIn">
+<var>${productpageoldprice}</var>
+<arg>${productpageoldprice}[1:]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240513 08:30:18.957" level="INFO">${productpageoldprice} = 105.00</msg>
+<status status="PASS" starttime="20240513 08:30:18.956" endtime="20240513 08:30:18.958"/>
 </kw>
-<kw name="Should Be Equal As Numbers" library="BuiltIn">
-<arg>${number_of_products}</arg>
-<arg>2</arg>
-<doc>Fails if objects are unequal after converting them to real numbers.</doc>
-<msg timestamp="20240511 04:23:26.942" level="INFO">Argument types are:
-&lt;class 'int'&gt;
-&lt;class 'str'&gt;</msg>
-<status status="PASS" starttime="20240511 04:23:26.942" endtime="20240511 04:23:26.942"/>
+<kw name="Set Variable" library="BuiltIn">
+<var>${productfilneprice}</var>
+<arg>${productfilneprice}[1:]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240513 08:30:18.960" level="INFO">${productfilneprice} = 89.00</msg>
+<status status="PASS" starttime="20240513 08:30:18.959" endtime="20240513 08:30:18.961"/>
+</kw>
+<kw name="Convert To Number" library="BuiltIn">
+<var>${productpageoldprice}</var>
+<arg>${productpageoldprice}</arg>
+<doc>Converts the given item to a floating point number.</doc>
+<msg timestamp="20240513 08:30:18.963" level="INFO">${productpageoldprice} = 105.0</msg>
+<status status="PASS" starttime="20240513 08:30:18.962" endtime="20240513 08:30:18.964"/>
+</kw>
+<kw name="Convert To Number" library="BuiltIn">
+<var>${productfilneprice}</var>
+<arg>${productfilneprice}</arg>
+<doc>Converts the given item to a floating point number.</doc>
+<msg timestamp="20240513 08:30:18.966" level="INFO">${productfilneprice} = 89.0</msg>
+<status status="PASS" starttime="20240513 08:30:18.965" endtime="20240513 08:30:18.966"/>
 </kw>
 <kw name="Run Keyword If" library="BuiltIn">
-<arg>'${number_of_products} == 2'</arg>
+<arg>${productpageoldprice} &gt; ${productfilneprice}</arg>
 <arg>Log</arg>
-<arg>Related Products chính xác</arg>
+<arg>Giá sản phẩm đã thay đổi !!! giá cũ lớn hơn giá mới, tức là sản phẩm này là sản phẩm giảm giá</arg>
+<arg>ELSE</arg>
+<arg>Log</arg>
+<arg>mơ đi</arg>
 <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
 <kw name="Log" library="BuiltIn">
-<arg>Related Products chính xác</arg>
+<arg>Giá sản phẩm đã thay đổi !!! giá cũ lớn hơn giá mới, tức là sản phẩm này là sản phẩm giảm giá</arg>
 <doc>Logs the given message with the given level.</doc>
-<msg timestamp="20240511 04:23:26.944" level="INFO">Related Products chính xác</msg>
-<status status="PASS" starttime="20240511 04:23:26.944" endtime="20240511 04:23:26.944"/>
+<msg timestamp="20240513 08:30:18.970" level="INFO">Giá sản phẩm đã thay đổi !!! giá cũ lớn hơn giá mới, tức là sản phẩm này là sản phẩm giảm giá</msg>
+<status status="PASS" starttime="20240513 08:30:18.970" endtime="20240513 08:30:18.971"/>
 </kw>
-<status status="PASS" starttime="20240511 04:23:26.943" endtime="20240511 04:23:26.944"/>
+<status status="PASS" starttime="20240513 08:30:18.967" endtime="20240513 08:30:18.972"/>
 </kw>
-<doc>kiểm tra sản phẩm có phần Related Products hay không sau đó lấy thông tin ra</doc>
-<status status="PASS" starttime="20240511 04:22:48.183" endtime="20240511 04:23:26.944"/>
+<doc>Kiểm tra xem sản phẩm đang giảm giá hay không nếu lấy thông tin và ngược lại</doc>
+<status status="PASS" starttime="20240513 08:29:40.432" endtime="20240513 08:30:18.973"/>
 </test>
-<status status="PASS" starttime="20240511 04:22:47.633" endtime="20240511 04:23:26.946"/>
+<status status="PASS" starttime="20240513 08:29:40.054" endtime="20240513 08:30:18.975"/>
 </suite>
 <statistics>
 <total>

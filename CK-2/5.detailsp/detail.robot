@@ -435,6 +435,7 @@ Check if the product has a Related Products section or not then retrieve the inf
 
 
 Check if the product has a Latest Products section or not then retrieve the information    [Documentation]    kiểm tra sản phẩm có phần Latest Products hay không sau đó lấy thông tin ra
+
     Open Browser    ${URL}    chrome
     Maximize Browser Window
     Set Selenium Speed    0.5
@@ -457,6 +458,7 @@ Check if the product has a Latest Products section or not then retrieve the info
     Should Be Equal As Numbers    ${number_of_products}    4
     Run Keyword If   '${number_of_products} == 4'    Log    Latest Products chính xác 
 
+    Close Browser
 
 
 
@@ -464,17 +466,90 @@ Check if the product has a Latest Products section or not then retrieve the info
 
 
 
+Check if the product has an Add to Cart section and then get information (for products in stock)    [Documentation]    Kiểm tra xem sản phẩm có phần Thêm vào giỏ hàng hay không rồi lấy thông tin(đối với sản phẩm còn hàng)
+
+    Open Browser    ${URL}    chrome
+    Maximize Browser Window
+    Set Selenium Speed    0.5
+
+    # Bước 1: Truy cập trang chủ
+    Go To    ${URL}
+
+    # Bước 2: Nhập từ khóa tìm kiếm và thực hiện tìm kiếm
+    Click Element    xpath=//*[@id="filter_keyword"]
+    Input Text    id=filter_keyword   Womens high heel point toe stiletto sandals ankle strap court shoes
+    Click Element    xpath=//*[@id="search_form"]/div/div
+
+    Wait Until Element Is Visible   xpath=//*[@id="maincontainer"]/div/div/div/div
+
+    #lấy thông tin phần nav
+    ${Get_infor}    Get Text    xpath=//*[@id="product"]/fieldset/div[5]/ul/li/a
+    Click Element    xpath=//*[@id="product"]/fieldset/div[5]/ul/li/a
+    Wait Until Element Is Visible    xpath=//*[@id="cart"]/div/div[1]/table    timeout=5s
+    Should Be Equal    ${Get_infor}        Add to Cart
+    Run Keyword If    '${Get_infor}' == 'Add to Cart'    Log    Sản phẩm vẫn còn
+    ${Get_infor_in_ Shopping Cart}    Get Text    xpath=//*[@id="cart"]/div/div[1]/table
+
+
+    Close Browser
 
 
 
+Check if the product has an Add to Cart section and then get information (for out of stock products)    [Documentation]    Kiểm tra xem sản phẩm có phần Thêm vào giỏ hàng hay không rồi lấy thông tin(đối với sản phẩm hết hàng)
+
+    Open Browser    ${URL}    chrome
+    Maximize Browser Window
+    Set Selenium Speed    0.5
+
+    # Bước 1: Truy cập trang chủ
+    Go To    ${URL}
+
+    # Bước 2: Nhập từ khóa tìm kiếm và thực hiện tìm kiếm
+    Click Element    xpath=//*[@id="filter_keyword"]
+    Input Text    id=filter_keyword   BeneFit Girl Meets Pearl
+    Click Element    xpath=//*[@id="search_form"]/div/div
+
+    Wait Until Element Is Visible   xpath=//*[@id="maincontainer"]/div/div/div/div
+
+    #lấy thông tin phần nav
+    ${Get_infor}    Get Text    xpath=//*[@id="product"]/fieldset/div[4]/ul
+    Click Element    xpath=//*[@id="product"]/fieldset/div[4]/ul
+    Wait Until Element Is Not Visible    xpath=//*[@id="cart"]/div/div[1]/table    timeout=5s
+    Should Be Equal    ${Get_infor}        Out of Stock
+    Run Keyword If    '${Get_infor}' == 'Out of Stock'    Log    Sản phẩm đã hết rồi
 
 
+    Close Browser
 
 
+Check if the product is on sale or not if getting information and vice versa    [Documentation]    Kiểm tra xem sản phẩm đang giảm giá hay không nếu lấy thông tin và ngược lại
 
+    Open Browser    ${URL}    chrome
+    Maximize Browser Window
+    Set Selenium Speed    0.5
 
+    # Bước 1: Truy cập trang chủ
+    Go To    ${URL}
 
+    # Bước 2: Nhập từ khóa tìm kiếm và thực hiện tìm kiếm
+    Click Element    xpath=//*[@id="filter_keyword"]
+    Input Text    id=filter_keyword   Absolue Eye Precious Cells
+    Click Element    xpath=//*[@id="search_form"]/div/div
+    Click Element    xpath=//*[@id="maincontainer"]/div/div/div/div/div[3]/div[2]/div[2]
 
+    Wait Until Element Is Visible   xpath=//*[@id="maincontainer"]/div/div/div/div
+
+    ${Get_infor}    Get Text    xpath=//*[@id="product_details"]/div/div[2]
+    ${productpageoldprice}    Get Text    xpath=//*[@id="product_details"]/div/div[2]/div/div/div[1]/div/span
+    ${productfilneprice}    Get Text    xpath=//*[@id="product_details"]/div/div[2]/div/div/div[1]/div/div
+    
+    ${productpageoldprice}    Set Variable    ${productpageoldprice}[1:]
+    ${productfilneprice}    Set Variable    ${productfilneprice}[1:]
+    ${productpageoldprice}    Convert To Number    ${productpageoldprice}
+    ${productfilneprice}    Convert To Number    ${productfilneprice}
+    Run Keyword If   ${productpageoldprice} > ${productfilneprice}    Log    Giá sản phẩm đã thay đổi !!! giá cũ lớn hơn giá mới, tức là sản phẩm này là sản phẩm giảm giá
+
+    ...    ELSE    Log    mơ đi 
 
 
 

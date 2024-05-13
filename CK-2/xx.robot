@@ -1,79 +1,218 @@
-*** Settings ***
-Library    SeleniumLibrary
-Library    Collections
-Library    String
-
-*** Variables ***
-${URL}    https://automationteststore.com
-${WAIT_TIME}        5s                     # Thời gian chờ 5 giây
-${product_image}    xpath=//*[@id="product_details"]/div/div[1]/div[2]/a/img
-*** Test Cases ***
-Search by category and retrieve the quantity in the found category
-    [Documentation]    tìm theo danh mục và lấy ra số lượng trong danh mục đã tìm được
+Check input information and addresses: Validate Region/State: Check valid selection of region/state from the list.
+    [Documentation]    Kiểm tra thông tin và địa chỉ đầu vào: Xác thực Vùng/Tiểu bang: Kiểm tra lựa chọn hợp lệ của vùng/tiểu bang từ danh sách.
     Open Browser    ${URL}    chrome
     Maximize Browser Window
     Set Selenium Speed    0.5
-
+    Sleep    5s
     # Bước 1: Truy cập trang chủ
     Go To    ${URL}
 
     # Bước 2: Nhập từ khóa tìm kiếm và thực hiện tìm kiếm
     Click Element    xpath=//*[@id="filter_keyword"]
-    Input Text    id=filter_keyword   Womens high heel point toe stiletto sandals ankle strap court shoes
+    Input Text    id=filter_keyword   Men
     Click Element    xpath=//*[@id="search_form"]/div/div
 
-    Wait Until Element Is Visible   xpath=//*[@id="maincontainer"]/div/div/div/div
 
-    # Bước 1: Đợi và click vào các phần tử img
-    Log    xem các ảnh img của các màu sản phẩm
-    Wait and Click Element    xpath=//*[@id="product_details"]/div/div[1]/ul/li[1]
-    Wait for Image to Load
-    Wait and Click Element    xpath=//*[@id="product_details"]/div/div[1]/ul/li[2]
-    Wait for Image to Load    
-    Wait and Click Element    xpath=//*[@id="product_details"]/div/div[1]/ul/li[3]
-    Wait for Image to Load    
-    Wait and Click Element    xpath=//*[@id="product_details"]/div/div[1]/ul/li[4]
-    Wait for Image to Load    
-    Wait and Click Element    xpath=//*[@id="product_details"]/div/div[1]/ul/li[5]
-    Wait for Image to Load    
-    Wait and Click Element    xpath=//*[@id="product_details"]/div/div[1]/ul/li[6]
-    Wait for Image to Load
+    # Bước 4: Kiểm tra và click vào sản phẩm tương ứng
+    Click Element    xpath=//*[@id="maincontainer"]/div/div/div/div/div[3]/div[4]/div[2]
+    Click Element    xpath=//*[@id="product"]/fieldset/div[5]/ul/li/a
 
 
- # Bước 1: Đợi và click vào các phần tử img
-    Log    click chọn các màu của sản phẩm
-    Wait and Click Element    xpath=//*[@id="product"]/fieldset/div[1]/div/label[1]
-    ${color-1}    Get Text    xpath=//*[@id="product"]/fieldset/div[1]/div/label[1]
-    Wait and Click Element    xpath=//*[@id="product"]/fieldset/div[1]/div/label[2]
-    ${color-2}    Get Text    xpath=//*[@id="product"]/fieldset/div[1]/div/label[2]
-    Wait and Click Element    xpath=//*[@id="product"]/fieldset/div[1]/div/label[3]
-    ${color-3}    Get Text    xpath=//*[@id="product"]/fieldset/div[1]/div/label[3]
-    Wait and Click Element    xpath=//*[@id="product"]/fieldset/div[1]/div/label[4]
-    ${color-4}    Get Text    xpath=//*[@id="product"]/fieldset/div[1]/div/label[4]
-    Wait and Click Element    xpath=//*[@id="product"]/fieldset/div[1]/div/label[5]
-    ${color-5}    Get Text    xpath=//*[@id="product"]/fieldset/div[1]/div/label[5]
+    # quay về guest
+    Click Element    xpath=//*[@id="cart_checkout1"]
+    #click guest
+    Click Element    xpath=//*[@id="accountFrm"]/fieldset/div[2]   
+    #click button contine
+    Click Element    xpath=//*[@id="accountFrm"]/fieldset/div[2]/label
+    Click Element    xpath=//*[@id="accountFrm"]/fieldset/button
+    Sleep    5s
 
-    # Bước 1: Click vào phần tử và kiểm tra
-    Wait Until Element Is Visible    xpath=//*[@id="product"]/fieldset/div[2]
-    ${quantity_value}    Get Element Attribute    id=product_quantity    value
-    Log    số lượng sản phẩm : ${quantity_value}
-    ${Total_Price}    Get Text    xpath=//*[@id="product"]/fieldset/div[3]/label/span
+    Wait Until Element Is Visible    xpath=/html/body/div/div[1]/div[2]/section    timeout=5s
+    ${message}    Get Text    xpath=/html/body/div/div[1]/div[2]/section
+    Should Contain    ${message}    Home Cart Guest Checkout - Step 1
+    ${heading-4}    Get Text    xpath=//*[@id="guestFrm"]/h4[1]
+    #input Your Personal Details
+    Input Text    id=guestFrm_firstname    John
+    Input Text    id=guestFrm_lastname    Jonathan
+    Input Text    id=guestFrm_email    thinhprotec@gmail.com
+    Input Text    id=guestFrm_telephone    0123456789
+    Input Text    id=guestFrm_fax    190789
+    ${heading-4}    Get Text    xpath=//*[@id="guestFrm"]/h4[2]
+    Input Text    id=guestFrm_company    Tôn Đức Thắng
+    Input Text    id=guestFrm_address_1    19 Đ. Nguyễn Hữu Thọ, Tân Hưng, Quận 7, Thành phố Hồ Chí Minh
+    Input Text    id=guestFrm_address_2   GQHM+WHM, Lộc Tiến, Bảo Lộc, Lâm Đồng
+    Input Text    id=guestFrm_city    Hồ Chí Minh
+    Select From List by Label    id=guestFrm_country_id    Viet Nam
+    Select From List by Label    id=guestFrm_zone_id     Ho Chi Minh City 
+    Input Text    id=guestFrm_postcode    1231321
+    Click Element     xpath=//*[@id="guestFrm_shipping_indicator"]
+    #input Shipping Address
+    Input Text    id=guestFrm_shipping_firstname    John
+    Input Text    id=guestFrm_shipping_lastname    Jonathan
+    Input Text    id=guestFrm_shipping_company    Tôn Đức Thắng
+    Input Text    id=guestFrm_shipping_address_1    22 Đ. Nguyễn Đình Chiểu, Vĩnh Phước, Nha Trang, Khánh Hòa
 
+    Input Text    id=guestFrm_shipping_address_2    TDTU Nha Trang, 22 Đ. Nguyễn Đình Chiểu, Vĩnh Phước, Nha Trang, Khánh Hòa
+    Input Text    id=guestFrm_shipping_city    Nha Trang
+    Select From List by Label
 
-    # Bước 5: Đóng trình duyệt
+    
+    ${heading-4}    Get Text    //*[@id="shipping_details"]/h4
+    
+    #conform
+    Click Element    xpath=//*[@id="guestFrm"]/div[4]/div/button
+
     Set Selenium Page Load Timeout    5s
-    # Bước 5: Đóng trình duyệt
-    Close Browser
+    #error message
 
-*** Keywords ***
-Wait and Click Element
-    [Arguments]    ${xpath}
-    Wait Until Page Contains Element    ${xpath}    timeout=${WAIT_TIME}
-    Click Element    ${xpath}
+    #first name
+
+    #Last Name:
+    
+    #email
+    
+    #address
+    
+
+    #City:
+
+    #Region / State:
+
+    #ZIP/Post Code:
+    
+
+    #Shipping Address
+
+    #first name
 
 
-Wait and Check img
-    Wait Until Element Is Visible    xpath=//*[@id="product_details"]/div/div[1]/div[1]
-Wait for Image to Load
-    Wait Until Element Is Visible    xpath=//img    timeout=${WAIT_TIME}
-    Log    Ảnh đã load thành công
+    #Last Name:
+
+
+    #address
+
+    #city
+
+    #Region / State:
+
+    #ZIP/Post Code:
+    Wait Until Element Is Visible    xpath=//*[@id="shipping_details"]/div/fieldset/div[8]/span    timeout=5s
+    ${message}=    Get Text    xpath=//*[@id="shipping_details"]/div/fieldset/div[8]/span
+    ${expected_message}=    Set Variable    Zip/postal code must be between 3 and 10 characters!
+    Should Be Equal As Strings    ${message}    ${expected_message}
+
+
+
+
+
+Check input information and addresses: Validate Region/State: Check when region/state is not selected.
+    Open Browser    ${URL}    chrome
+    Maximize Browser Window
+    Set Selenium Speed    0.5
+    Sleep    5s
+    # Bước 1: Truy cập trang chủ
+    Go To    ${URL}
+
+    # Bước 2: Nhập từ khóa tìm kiếm và thực hiện tìm kiếm
+    Click Element    xpath=//*[@id="filter_keyword"]
+    Input Text    id=filter_keyword   Men
+    Click Element    xpath=//*[@id="search_form"]/div/div
+
+
+    # Bước 4: Kiểm tra và click vào sản phẩm tương ứng
+    Click Element    xpath=//*[@id="maincontainer"]/div/div/div/div/div[3]/div[4]/div[2]
+    Click Element    xpath=//*[@id="product"]/fieldset/div[5]/ul/li/a
+
+
+    # quay về guest
+    Click Element    xpath=//*[@id="cart_checkout1"]
+    #click guest
+    Click Element    xpath=//*[@id="accountFrm"]/fieldset/div[2]   
+    #click button contine
+    Click Element    xpath=//*[@id="accountFrm"]/fieldset/div[2]/label
+    Click Element    xpath=//*[@id="accountFrm"]/fieldset/button
+    Sleep    5s
+
+    Wait Until Element Is Visible    xpath=/html/body/div/div[1]/div[2]/section    timeout=5s
+    ${message}    Get Text    xpath=/html/body/div/div[1]/div[2]/section
+    Should Contain    ${message}    Home Cart Guest Checkout - Step 1
+    ${heading-4}    Get Text    xpath=//*[@id="guestFrm"]/h4[1]
+    #input Your Personal Details
+    Input Text    id=guestFrm_firstname    John
+    Input Text    id=guestFrm_lastname    Jonathan
+    Input Text    id=guestFrm_email    thinhprotec@gmail.com
+    Input Text    id=guestFrm_telephone    0123456789
+    Input Text    id=guestFrm_fax    190789
+    ${heading-4}    Get Text    xpath=//*[@id="guestFrm"]/h4[2]
+    Input Text    id=guestFrm_company    Tôn Đức Thắng
+    Input Text    id=guestFrm_address_1    19 Đ. Nguyễn Hữu Thọ, Tân Hưng, Quận 7, Thành phố Hồ Chí Minh
+    Input Text    id=guestFrm_address_2   GQHM+WHM, Lộc Tiến, Bảo Lộc, Lâm Đồng
+    Input Text    id=guestFrm_city    Hồ Chí Minh
+    Select From List by Label    id=guestFrm_country_id    Viet Nam
+    Select From List by Label    id=guestFrm_zone_id     Ho Chi Minh City 
+    Input Text    id=guestFrm_postcode    1231321
+    Click Element     xpath=//*[@id="guestFrm_shipping_indicator"]
+    #input Shipping Address
+    Input Text    id=guestFrm_shipping_firstname    John
+    Input Text    id=guestFrm_shipping_lastname    Jonathan
+    Input Text    id=guestFrm_shipping_company    Tôn Đức Thắng
+    Input Text    id=guestFrm_shipping_address_1    22 Đ. Nguyễn Đình Chiểu, Vĩnh Phước, Nha Trang, Khánh Hòa
+
+    Input Text    id=guestFrm_shipping_address_2    TDTU Nha Trang, 22 Đ. Nguyễn Đình Chiểu, Vĩnh Phước, Nha Trang, Khánh Hòa
+    Input Text    id=guestFrm_shipping_city    Nha Trang
+    Select From List by Label
+
+    
+    ${heading-4}    Get Text    //*[@id="shipping_details"]/h4
+    
+    #conform
+    Click Element    xpath=//*[@id="guestFrm"]/div[4]/div/button
+
+    Set Selenium Page Load Timeout    5s
+    #error message
+
+    #first name
+
+    #Last Name:
+    
+    #email
+    
+    #address
+    
+
+    #City:
+
+    #Region / State:
+
+    #ZIP/Post Code:
+    
+
+    #Shipping Address
+
+    #first name
+
+
+    #Last Name:
+
+
+    #address
+
+    #city
+
+    #Region / State:
+
+    #ZIP/Post Code:
+    Wait Until Element Is Visible    xpath=//*[@id="shipping_details"]/div/fieldset/div[8]/span    timeout=5s
+    ${message}=    Get Text    xpath=//*[@id="shipping_details"]/div/fieldset/div[8]/span
+    ${expected_message}=    Set Variable    Zip/postal code must be between 3 and 10 characters!
+    Should Be Equal As Strings    ${message}    ${expected_message}
+
+
+
+
+
+
+    Wait Until Element Is Visible    xpath=//*[@id="shipping_details"]/div/fieldset/div[7]/span    timeout=5s
+    ${message}=    Get Text    xpath=//*[@id="shipping_details"]/div/fieldset/div[7]/span
+    ${expected_message}=    Set Variable    Please select a region / state!
+    Should Be Equal As Strings    ${message}    ${expected_message} 

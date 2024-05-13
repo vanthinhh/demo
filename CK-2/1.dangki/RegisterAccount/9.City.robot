@@ -9,8 +9,7 @@ ${Page Index}    https://automationteststore.com/
 ${Page Swap-1}   https://automationteststore.com/index.php?rt=account/login
 ${Page Swap-2}   https://automationteststore.com/index.php?rt=account/create
 *** Test Cases ***
-DangKiTaiKhoanMoi-0
-    [Documentation]    đăng nhập không có thông tin
+Register with the City having no characters (empty) and check the constraint: [Documentation] Đăng ký với trường City không có ký tự nào (rỗng) và kiểm tra ràng buộc:
     Open Browser    ${URL}    ${BROWSER}
     Maximize Browser Window
     Set Selenium Speed    0.5
@@ -108,10 +107,8 @@ DangKiTaiKhoanMoi-0
 
 
 
-DangKiTaiKhoanMoi-1
-
-
-    [Documentation]    Login name đạt độ dài tối thiểu và chỉ chứa ký tự chữ cái và số:
+Register with the City field to achieve min and max length: and check the constraint
+    [Documentation]    Đăng kí với trường City đạt độ dài tối thiểu và tối đa:và kiểm tra ràng buộc
     Open Browser    ${URL}    chrome
     Maximize Browser Window
     Set Selenium Speed    0.5
@@ -123,10 +120,7 @@ DangKiTaiKhoanMoi-1
     Click Element    xpath=//*[@id="customer_menu_top"]/li/a
     Click Element    xpath=//*[@id="accountFrm"]/fieldset/button
 
-
-    
-    #first name
-   #first name
+    #FirstName
     Input Text    id=AccountFrm_firstname    John123
     Input Text    id=AccountFrm_lastname    Doe123
     Input Text    id=AccountFrm_email    example@example.com
@@ -138,28 +132,55 @@ DangKiTaiKhoanMoi-1
     Input Text    id=AccountFrm_city    Ho Chi Minh City
 
 
-    Select From List by Label    id=AccountFrm_country_id    Viet Nam
-    Sleep    10seconds
-    Select From List by Label    id=AccountFrm_zone_id    Ho Chi Minh City
-    Input Text    id=AccountFrm_postcode    12345
-    
-    Input Text    id=AccountFrm_loginname   test123
-    Input Text    id=AccountFrm_password    pass123
-
 
     # Bước 3: Xác nhận và đăng kí
     Click Button    xpath=//*[@id="AccountFrm"]/div[5]/div/div/button
     Sleep    10s
-
+    
     
 
-   
+
+
+    #Email
+
+    #Address
+
+
+    #City
+    
+
 
     #Region / State:
-    
+    Wait Until Element Is Visible    xpath=//*[@id="AccountFrm"]/div[2]/fieldset/div[5]/span    timeout=5s
+
+    ${message}=    Get Text    xpath=//*[@id="AccountFrm"]/div[2]/fieldset/div[5]/span
+    ${expected_message}=    Set Variable    Please select a region / state!
+    Should Be Equal As Strings    ${message}    ${expected_message}
+
 
     #Zip
-    
+    Wait Until Element Is Visible    xpath=//*[@id="AccountFrm"]/div[2]/fieldset/div[6]/span    timeout=5s
+
+    ${message}=    Get Text    xpath=//*[@id="AccountFrm"]/div[2]/fieldset/div[6]/span
+    ${expected_message}=    Set Variable    Zip/postal code must be between 3 and 10 characters!
+    Should Be Equal As Strings    ${message}    ${expected_message}
+
+
+    #LoginName
+    Wait Until Element Is Visible    xpath=//*[@id="AccountFrm"]/div[3]/fieldset/div[1]/span    timeout=5s
+
+    ${message}=    Get Text    xpath=//*[@id="AccountFrm"]/div[3]/fieldset/div[1]/span
+    ${expected_message}=    Set Variable    Login name must be alphanumeric only and between 5 and 64 characters!
+    Should Be Equal As Strings    ${message}    ${expected_message}
+
+
+    #LoginPassword
+    Wait Until Element Is Visible    xpath=//*[@id="AccountFrm"]/div[3]/fieldset/div[2]/span    timeout=5s
+
+    ${message}=    Get Text    xpath=//*[@id="AccountFrm"]/div[3]/fieldset/div[2]/span
+    ${expected_message}=    Set Variable    Password must be between 4 and 20 characters!
+    Should Be Equal As Strings    ${message}    ${expected_message}
+
 
     #Error
     Wait Until Element Is Visible    xpath=//*[@id="maincontainer"]/div/div/div/div[1]    timeout=5s
@@ -171,12 +192,8 @@ DangKiTaiKhoanMoi-1
 
     # Bước 4: Đóng trình duyệt
     Close Browser
-
-
-DangKiTaiKhoanMoi-1.1
-
-
-    [Documentation]    Password dài hơn 20 ký tự:
+Register with the City field shorter than min length: and check the constraint
+    [Documentation]    Đăng kí với trường City ngắn hơn độ dài tối thiểu:và kiểm tra ràng buộc
     Open Browser    ${URL}    chrome
     Maximize Browser Window
     Set Selenium Speed    0.5
@@ -188,10 +205,7 @@ DangKiTaiKhoanMoi-1.1
     Click Element    xpath=//*[@id="customer_menu_top"]/li/a
     Click Element    xpath=//*[@id="accountFrm"]/fieldset/button
 
-
-    
-    #first name
-    #first name
+    #FirstName
     Input Text    id=AccountFrm_firstname    John123
     Input Text    id=AccountFrm_lastname    Doe123
     Input Text    id=AccountFrm_email    example@example.com
@@ -200,33 +214,54 @@ DangKiTaiKhoanMoi-1.1
     Input Text    id=AccountFrm_company    Tôn Đức Thắng University
     Input Text    id=AccountFrm_address_1    123 Đường Lê Lai, Quận 1, Thành phố Hồ Chí Minh
     Input Text    id=AccountFrm_address_2    123 Đường Lê Lai, Quận 1, Thành phố Hồ Chí Minh
-    Input Text    id=AccountFrm_city    Ho Chi Minh City
+    Input Text    id=AccountFrm_city    HCM
 
-
-    Select From List by Label    id=AccountFrm_country_id    Viet Nam
-    Sleep    10seconds
-    Select From List by Label    id=AccountFrm_zone_id    Ho Chi Minh City
-    Input Text    id=AccountFrm_postcode    12345
-    
-    Input Text    id=AccountFrm_loginname   test123
-    Input Text    id=AccountFrm_password    thisisalongpasswordthatisdefinitelymorethan20characterslong
 
 
     # Bước 3: Xác nhận và đăng kí
     Click Button    xpath=//*[@id="AccountFrm"]/div[5]/div/div/button
     Sleep    10s
-
+    
     
 
-   
+
+
+    #Email
+
+    #Address
+
+
+    #City
+    Wait Until Element Is Visible    xpath=//*[@id="AccountFrm"]/div[2]/fieldset/div[4]/span    timeout=5s
+
+    ${message}=    Get Text    xpath=//*[@id="AccountFrm"]/div[2]/fieldset/div[4]/span
+    ${expected_message}=    Set Variable    City must be between 3 and 128 characters!
+    Should Be Equal As Strings    ${message}    ${expected_message}
+
 
     #Region / State:
- 
+    Wait Until Element Is Visible    xpath=//*[@id="AccountFrm"]/div[2]/fieldset/div[5]/span    timeout=5s
+
+    ${message}=    Get Text    xpath=//*[@id="AccountFrm"]/div[2]/fieldset/div[5]/span
+    ${expected_message}=    Set Variable    Please select a region / state!
+    Should Be Equal As Strings    ${message}    ${expected_message}
 
 
     #Zip
-    
+    Wait Until Element Is Visible    xpath=//*[@id="AccountFrm"]/div[2]/fieldset/div[6]/span    timeout=5s
+
+    ${message}=    Get Text    xpath=//*[@id="AccountFrm"]/div[2]/fieldset/div[6]/span
+    ${expected_message}=    Set Variable    Zip/postal code must be between 3 and 10 characters!
+    Should Be Equal As Strings    ${message}    ${expected_message}
+
+
     #LoginName
+    Wait Until Element Is Visible    xpath=//*[@id="AccountFrm"]/div[3]/fieldset/div[1]/span    timeout=5s
+
+    ${message}=    Get Text    xpath=//*[@id="AccountFrm"]/div[3]/fieldset/div[1]/span
+    ${expected_message}=    Set Variable    Login name must be alphanumeric only and between 5 and 64 characters!
+    Should Be Equal As Strings    ${message}    ${expected_message}
+
 
     #LoginPassword
     Wait Until Element Is Visible    xpath=//*[@id="AccountFrm"]/div[3]/fieldset/div[2]/span    timeout=5s
@@ -248,10 +283,8 @@ DangKiTaiKhoanMoi-1.1
     Close Browser
 
 
-DangKiTaiKhoanMoi-1.2
-
-
-    [Documentation]    Password ngắn hơn 4 ký tự:
+Register with the City field longer than the maximum length: and check the constraint
+    [Documentation]   Đăng kí với trường City dài hơn độ dài tối đa:và kiểm tra ràng buộc
     Open Browser    ${URL}    chrome
     Maximize Browser Window
     Set Selenium Speed    0.5
@@ -263,9 +296,7 @@ DangKiTaiKhoanMoi-1.2
     Click Element    xpath=//*[@id="customer_menu_top"]/li/a
     Click Element    xpath=//*[@id="accountFrm"]/fieldset/button
 
-
-    
-   #first name
+    #FirstName
     Input Text    id=AccountFrm_firstname    John123
     Input Text    id=AccountFrm_lastname    Doe123
     Input Text    id=AccountFrm_email    example@example.com
@@ -274,35 +305,51 @@ DangKiTaiKhoanMoi-1.2
     Input Text    id=AccountFrm_company    Tôn Đức Thắng University
     Input Text    id=AccountFrm_address_1    123 Đường Lê Lai, Quận 1, Thành phố Hồ Chí Minh
     Input Text    id=AccountFrm_address_2    123 Đường Lê Lai, Quận 1, Thành phố Hồ Chí Minh
-    Input Text    id=AccountFrm_city    Ho Chi Minh City
+    Input Text    id=AccountFrm_city    Ho Chi Minh CityHo Chi Minh CityHo Chi Minh CityHo Chi Minh CityHo Chi Minh CityHo Chi Minh CityHo Chi Minh CityHo Chi Minh CityHo Chi Minh CityHo Chi Minh CityHo Chi Minh CityHo Chi Minh CityHo Chi Minh CityHo Chi Minh CityHo Chi Minh CityHo Chi Minh CityHo Chi Minh CityHo Chi Minh City
 
-
-    Select From List by Label    id=AccountFrm_country_id    Viet Nam
-    Sleep    10seconds
-    Select From List by Label    id=AccountFrm_zone_id    Ho Chi Minh City
-    Input Text    id=AccountFrm_postcode    12345
-    
-    Input Text    id=AccountFrm_loginname   test123
-    Input Text    id=AccountFrm_password    abc
 
 
     # Bước 3: Xác nhận và đăng kí
     Click Button    xpath=//*[@id="AccountFrm"]/div[5]/div/div/button
     Sleep    10s
-
+    
     
 
-   
+
+
+    #Email
+
+    #Address
+
+
+    #City
+    
+
 
     #Region / State:
-   
+    Wait Until Element Is Visible    xpath=//*[@id="AccountFrm"]/div[2]/fieldset/div[5]/span    timeout=5s
+
+    ${message}=    Get Text    xpath=//*[@id="AccountFrm"]/div[2]/fieldset/div[5]/span
+    ${expected_message}=    Set Variable    Please select a region / state!
+    Should Be Equal As Strings    ${message}    ${expected_message}
 
 
     #Zip
-   
+    Wait Until Element Is Visible    xpath=//*[@id="AccountFrm"]/div[2]/fieldset/div[6]/span    timeout=5s
+
+    ${message}=    Get Text    xpath=//*[@id="AccountFrm"]/div[2]/fieldset/div[6]/span
+    ${expected_message}=    Set Variable    Zip/postal code must be between 3 and 10 characters!
+    Should Be Equal As Strings    ${message}    ${expected_message}
+
 
     #LoginName
-   
+    Wait Until Element Is Visible    xpath=//*[@id="AccountFrm"]/div[3]/fieldset/div[1]/span    timeout=5s
+
+    ${message}=    Get Text    xpath=//*[@id="AccountFrm"]/div[3]/fieldset/div[1]/span
+    ${expected_message}=    Set Variable    Login name must be alphanumeric only and between 5 and 64 characters!
+    Should Be Equal As Strings    ${message}    ${expected_message}
+
+
     #LoginPassword
     Wait Until Element Is Visible    xpath=//*[@id="AccountFrm"]/div[3]/fieldset/div[2]/span    timeout=5s
 
@@ -323,11 +370,14 @@ DangKiTaiKhoanMoi-1.2
     Close Browser
 
 
-DangKiTaiKhoanMoi-1.3
 
 
-    [Documentation]    Password chứa ký tự đặc biệt:
 
+
+
+
+Register with the City field containing special characters: and check the constraint
+    [Documentation]    Đăng kí với trường City chứa ký tự đặc biệt:và kiểm tra ràng buộc
     Open Browser    ${URL}    chrome
     Maximize Browser Window
     Set Selenium Speed    0.5
@@ -339,9 +389,7 @@ DangKiTaiKhoanMoi-1.3
     Click Element    xpath=//*[@id="customer_menu_top"]/li/a
     Click Element    xpath=//*[@id="accountFrm"]/fieldset/button
 
-
-    
-   #first name
+    #FirstName
     Input Text    id=AccountFrm_firstname    John123
     Input Text    id=AccountFrm_lastname    Doe123
     Input Text    id=AccountFrm_email    example@example.com
@@ -350,314 +398,57 @@ DangKiTaiKhoanMoi-1.3
     Input Text    id=AccountFrm_company    Tôn Đức Thắng University
     Input Text    id=AccountFrm_address_1    123 Đường Lê Lai, Quận 1, Thành phố Hồ Chí Minh
     Input Text    id=AccountFrm_address_2    123 Đường Lê Lai, Quận 1, Thành phố Hồ Chí Minh
-    Input Text    id=AccountFrm_city    Ho Chi Minh City
+    Input Text    id=AccountFrm_city    HCM@City
 
-
-    Select From List by Label    id=AccountFrm_country_id    Viet Nam
-    Sleep    10seconds
-    Select From List by Label    id=AccountFrm_zone_id    Ho Chi Minh City
-    Input Text    id=AccountFrm_postcode    12345
-    
-    Input Text    id=AccountFrm_loginname   test123
-    Input Text    id=AccountFrm_password    pass!@#123
 
 
     # Bước 3: Xác nhận và đăng kí
     Click Button    xpath=//*[@id="AccountFrm"]/div[5]/div/div/button
     Sleep    10s
-
+    
     
 
-   
+
+
+    #Email
+
+    #Address
+
+
+    #City
+    
+
 
     #Region / State:
-   
+    Wait Until Element Is Visible    xpath=//*[@id="AccountFrm"]/div[2]/fieldset/div[5]/span    timeout=5s
+
+    ${message}=    Get Text    xpath=//*[@id="AccountFrm"]/div[2]/fieldset/div[5]/span
+    ${expected_message}=    Set Variable    Please select a region / state!
+    Should Be Equal As Strings    ${message}    ${expected_message}
+
 
     #Zip
-   
+    Wait Until Element Is Visible    xpath=//*[@id="AccountFrm"]/div[2]/fieldset/div[6]/span    timeout=5s
+
+    ${message}=    Get Text    xpath=//*[@id="AccountFrm"]/div[2]/fieldset/div[6]/span
+    ${expected_message}=    Set Variable    Zip/postal code must be between 3 and 10 characters!
+    Should Be Equal As Strings    ${message}    ${expected_message}
+
 
     #LoginName
-    
+    Wait Until Element Is Visible    xpath=//*[@id="AccountFrm"]/div[3]/fieldset/div[1]/span    timeout=5s
 
-    
+    ${message}=    Get Text    xpath=//*[@id="AccountFrm"]/div[3]/fieldset/div[1]/span
+    ${expected_message}=    Set Variable    Login name must be alphanumeric only and between 5 and 64 characters!
+    Should Be Equal As Strings    ${message}    ${expected_message}
 
 
-    #Error
-    Wait Until Element Is Visible    xpath=//*[@id="maincontainer"]/div/div/div/div[1]    timeout=5s
+    #LoginPassword
+    Wait Until Element Is Visible    xpath=//*[@id="AccountFrm"]/div[3]/fieldset/div[2]/span    timeout=5s
 
-    ${message}=    Get Text    xpath=//*[@id="maincontainer"]/div/div/div/div[1]
-    ${expected_message}=    Set Variable     Error: You must agree to the Privacy Policy!
-    Should Match Regexp    ${message}    .*Error: You must agree to the Privacy Policy!.*
-
-
-    # Bước 4: Đóng trình duyệt
-    Close Browser
-
-
-DangKiTaiKhoanMoi-1.4
-
-
-    [Documentation]    Password chỉ chứa ký tự đặc biệt
-
-    Open Browser    ${URL}    chrome
-    Maximize Browser Window
-    Set Selenium Speed    0.5
-
-    # Bước 1: Truy cập trang chủ
-    Go To    ${URL}
-
-    # Bước 2: Chọn tùy chọn "Đăng kí"
-    Click Element    xpath=//*[@id="customer_menu_top"]/li/a
-    Click Element    xpath=//*[@id="accountFrm"]/fieldset/button
-
-
-    
-   #first name
-    Input Text    id=AccountFrm_firstname    John123
-    Input Text    id=AccountFrm_lastname    Doe123
-    Input Text    id=AccountFrm_email    example@example.com
-    Input Text    id=AccountFrm_telephone    0123456789
-    Input Text    id=AccountFrm_fax    1234567890
-    Input Text    id=AccountFrm_company    Tôn Đức Thắng University
-    Input Text    id=AccountFrm_address_1    123 Đường Lê Lai, Quận 1, Thành phố Hồ Chí Minh
-    Input Text    id=AccountFrm_address_2    123 Đường Lê Lai, Quận 1, Thành phố Hồ Chí Minh
-    Input Text    id=AccountFrm_city    Ho Chi Minh City
-
-
-    Select From List by Label    id=AccountFrm_country_id    Viet Nam
-    Sleep    10seconds
-    Select From List by Label    id=AccountFrm_zone_id    Ho Chi Minh City
-    Input Text    id=AccountFrm_postcode    12345
-    
-    Input Text    id=AccountFrm_loginname   test123
-    Input Text    id=AccountFrm_password    $%^&*_*&%
-
-
-    # Bước 3: Xác nhận và đăng kí
-    Click Button    xpath=//*[@id="AccountFrm"]/div[5]/div/div/button
-    Sleep    10s
-
-    
-
-   
-
-    #Region / State:
-    
-
-    #Zip
-   
-    #LoginName
-  
-
-
-
-    #Error
-    Wait Until Element Is Visible    xpath=//*[@id="maincontainer"]/div/div/div/div[1]    timeout=5s
-
-    ${message}=    Get Text    xpath=//*[@id="maincontainer"]/div/div/div/div[1]
-    ${expected_message}=    Set Variable     Error: You must agree to the Privacy Policy!
-    Should Match Regexp    ${message}    .*Error: You must agree to the Privacy Policy!.*
-
-
-    # Bước 4: Đóng trình duyệt
-    Close Browser
-
-
-DangKiTaiKhoanMoi-1.5
-
-
-    [Documentation]    Login name có độ dài nhỏ hơn 5 ký tự:
-
-    Open Browser    ${URL}    chrome
-    Maximize Browser Window
-    Set Selenium Speed    0.5
-
-    # Bước 1: Truy cập trang chủ
-    Go To    ${URL}
-
-    # Bước 2: Chọn tùy chọn "Đăng kí"
-    Click Element    xpath=//*[@id="customer_menu_top"]/li/a
-    Click Element    xpath=//*[@id="accountFrm"]/fieldset/button
-
-
-    
-   #first name
-    Input Text    id=AccountFrm_firstname    John123
-    Input Text    id=AccountFrm_lastname    Doe123
-    Input Text    id=AccountFrm_email    example@example.com
-    Input Text    id=AccountFrm_telephone    0123456789
-    Input Text    id=AccountFrm_fax    1234567890
-    Input Text    id=AccountFrm_company    Tôn Đức Thắng University
-    Input Text    id=AccountFrm_address_1    123 Đường Lê Lai, Quận 1, Thành phố Hồ Chí Minh
-    Input Text    id=AccountFrm_address_2    123 Đường Lê Lai, Quận 1, Thành phố Hồ Chí Minh
-    Input Text    id=AccountFrm_city    Ho Chi Minh City
-
-
-    Select From List by Label    id=AccountFrm_country_id    Viet Nam
-    Sleep    10seconds
-    Select From List by Label    id=AccountFrm_zone_id    Ho Chi Minh City
-    Input Text    id=AccountFrm_postcode    12345
-    
-    Input Text    id=AccountFrm_loginname   test123
-    Input Text    id=AccountFrm_password    ha ha ha
-
-
-    # Bước 3: Xác nhận và đăng kí
-    Click Button    xpath=//*[@id="AccountFrm"]/div[5]/div/div/button
-    Sleep    10s
-
-    
-
-   
-
-    #Region / State:
-    
-
-
-    #Zip
-   
-
-    #LoginName
-    
-
-
-    #Error
-    Wait Until Element Is Visible    xpath=//*[@id="maincontainer"]/div/div/div/div[1]    timeout=5s
-
-    ${message}=    Get Text    xpath=//*[@id="maincontainer"]/div/div/div/div[1]
-    ${expected_message}=    Set Variable     Error: You must agree to the Privacy Policy!
-    Should Match Regexp    ${message}    .*Error: You must agree to the Privacy Policy!.*
-
-
-    # Bước 4: Đóng trình duyệt
-    Close Browser
-
-DangKiTaiKhoanMoi-1.6
-
-
-    [Documentation]    Password có kết hợp ký tự chữ cái, số và ký tự đặc biệt, đủ độ dài:
-
-    Open Browser    ${URL}    chrome
-    Maximize Browser Window
-    Set Selenium Speed    0.5
-
-    # Bước 1: Truy cập trang chủ
-    Go To    ${URL}
-
-    # Bước 2: Chọn tùy chọn "Đăng kí"
-    Click Element    xpath=//*[@id="customer_menu_top"]/li/a
-    Click Element    xpath=//*[@id="accountFrm"]/fieldset/button
-
-
-    
-   #first name
-    Input Text    id=AccountFrm_firstname    John123
-    Input Text    id=AccountFrm_lastname    Doe123
-    Input Text    id=AccountFrm_email    example@example.com
-    Input Text    id=AccountFrm_telephone    0123456789
-    Input Text    id=AccountFrm_fax    1234567890
-    Input Text    id=AccountFrm_company    Tôn Đức Thắng University
-    Input Text    id=AccountFrm_address_1    123 Đường Lê Lai, Quận 1, Thành phố Hồ Chí Minh
-    Input Text    id=AccountFrm_address_2    123 Đường Lê Lai, Quận 1, Thành phố Hồ Chí Minh
-    Input Text    id=AccountFrm_city    Ho Chi Minh City
-
-
-    Select From List by Label    id=AccountFrm_country_id    Viet Nam
-    Sleep    10seconds
-    Select From List by Label    id=AccountFrm_zone_id    Ho Chi Minh City
-    Input Text    id=AccountFrm_postcode    12345
-    
-    Input Text    id=AccountFrm_loginname   test123
-    Input Text    id=AccountFrm_password    P@ssw0rd!
-
-
-    # Bước 3: Xác nhận và đăng kí
-    Click Button    xpath=//*[@id="AccountFrm"]/div[5]/div/div/button
-    Sleep    10s
-
-    
-
-   
-
-    #Region / State:
-    
-
-
-    #Zip
-   
-
-    #LoginName
-    
-
-
-
-    #Error
-    Wait Until Element Is Visible    xpath=//*[@id="maincontainer"]/div/div/div/div[1]    timeout=5s
-
-    ${message}=    Get Text    xpath=//*[@id="maincontainer"]/div/div/div/div[1]
-    ${expected_message}=    Set Variable     Error: You must agree to the Privacy Policy!
-    Should Match Regexp    ${message}    .*Error: You must agree to the Privacy Policy!.*
-
-
-    # Bước 4: Đóng trình duyệt
-    Close Browser
-
-
-
-DangKiTaiKhoanMoi-1.7
-
-
-    [Documentation]    Password có độ dài chính xác 4 ký tự:
-
-    Open Browser    ${URL}    chrome
-    Maximize Browser Window
-    Set Selenium Speed    0.5
-
-    # Bước 1: Truy cập trang chủ
-    Go To    ${URL}
-
-    # Bước 2: Chọn tùy chọn "Đăng kí"
-    Click Element    xpath=//*[@id="customer_menu_top"]/li/a
-    Click Element    xpath=//*[@id="accountFrm"]/fieldset/button
-
-
-    
-   #first name
-    Input Text    id=AccountFrm_firstname    John123
-    Input Text    id=AccountFrm_lastname    Doe123
-    Input Text    id=AccountFrm_email    example@example.com
-    Input Text    id=AccountFrm_telephone    0123456789
-    Input Text    id=AccountFrm_fax    1234567890
-    Input Text    id=AccountFrm_company    Tôn Đức Thắng University
-    Input Text    id=AccountFrm_address_1    123 Đường Lê Lai, Quận 1, Thành phố Hồ Chí Minh
-    Input Text    id=AccountFrm_address_2    123 Đường Lê Lai, Quận 1, Thành phố Hồ Chí Minh
-    Input Text    id=AccountFrm_city    Ho Chi Minh City
-
-
-    Select From List by Label    id=AccountFrm_country_id    Viet Nam
-    Sleep    10seconds
-    Select From List by Label    id=AccountFrm_zone_id    Ho Chi Minh City
-    Input Text    id=AccountFrm_postcode    12345
-    
-    Input Text    id=AccountFrm_loginname   test123
-    Input Text    id=AccountFrm_password    pass
-
-
-    # Bước 3: Xác nhận và đăng kí
-    Click Button    xpath=//*[@id="AccountFrm"]/div[5]/div/div/button
-    Sleep    10s
-
-    
-
-   
-
-    #Region / State:
-    
-
-    #Zip
-   
-
-
+    ${message}=    Get Text    xpath=//*[@id="AccountFrm"]/div[3]/fieldset/div[2]/span
+    ${expected_message}=    Set Variable    Password must be between 4 and 20 characters!
+    Should Be Equal As Strings    ${message}    ${expected_message}
 
 
     #Error

@@ -453,8 +453,8 @@ Register with the Password field containing only special characters and check th
     Close Browser
 
 
-Register with the Login name field less than 5 characters in length: and check the constraint
-    [Documentation]   Đăng kí với trường  Login name có độ dài nhỏ hơn 5 ký tự: và kiểm tra ràng buộc
+Register with the Password field less than 5 characters in length: and check the constraint
+    [Documentation]   Đăng kí với trường  Password có độ dài nhỏ hơn 5 ký tự: và kiểm tra ràng buộc
 
     Open Browser    ${URL}    chrome
     Maximize Browser Window
